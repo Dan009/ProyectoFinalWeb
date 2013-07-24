@@ -18,7 +18,7 @@
 
              }else{
                alert("Lo sentimos los datos no coinciden");
-              004-9222333-3
+      
              }*/
 
      
@@ -167,25 +167,15 @@
                   <tr>
                     <th>Nombre</th>
                     <td><input type="text" name="txtNombre" value="<?php echo $_POST['txtNombre'] ?>" required/> </td>
-                  </tr>
-
-                  <tr>
+             
                     <th>Apellido</th>
                     <td><input type="text" name="txtApellido" value="<?php echo $_POST['txtApellido'] ?>" required /> </td>
-                  </tr>
-
-                  <tr>
-                    <th>Nombre de usuario</th>
-                    <td><input type="text" name="txtUsuario"value="<?php echo $_POST['txtUsuario'] ?>" required /> </td>
                   </tr>
 
                   <tr class="contraseña">
                     <th>Contrase&ntilde;a</th>
                     <td><input type="password" id="txtPrimeraClave" name="txtPrimeraClave"></td>
-                  </tr>
-                  <tr>
 
-                  <tr class="contraseña">
                     <th>Repita su Contrase&ntilde;a, Por Favor</th>
                     <td><input type="password" id="txtSegundaClave" name="txtSegundaClave"></td>
                     <td ><span class="help-inline"> La contrase&ntilde;a debe tener 6 caracteres Max.</span></td>
@@ -201,12 +191,15 @@
                   </tr>
 
                   <tr>
+                    <th>Nombre de usuario</th>
+                    <td><input type="text" name="txtUsuario"value="<?php echo $_POST['txtUsuario'] ?>" required /> </td>
+
                     <th>Email</th>
                     <td><input type="email" name="txtEmail" placeholder="Prueba@hotmail.com" value="<?php echo $_POST['txtEmail'] ?>"required /> </td>
                   </tr>
 
                   <tr class="<?php  echo $mostrarErrorEmail;?>">
-                    <td colspan="2">  
+                    <td colspan="4">  
                         <div class="alert alert-error">
                           <button type="button" class="close" data-dismiss="alert">x</button>
                           <span>Este correo electronico esta en uso</span>
@@ -218,22 +211,19 @@
                   <tr>
                     <th>Cedula</th>
                     <td><input type="text" id="txtCedula" name="txtCedula" id="inputError" placeholder="000-0000000-0" required/> </td>
+                   
+                    <th>Telefono</th>
+                    <td><input type="text" name="txtTelefono" placeholder="(000) 000-0000" value="<?php echo $_POST['txtTelefono'] ?>"required/> </td>
                   </tr>
 
                   <tr class="<?php  echo $mostrarErrorCedula;?>">
-                    <td colspan="2">  
+                    <td colspan="4">  
                         <div class="alert alert-error">
                           <button type="button" class="close" data-dismiss="alert">x</button>
                           <span>Existe un usuario con esa Cedula</span>
                         </div> 
                     </td> 
                   </tr>
-
-                  <tr>
-                    <th>Telefono</th>
-                    <td><input type="text" name="txtTelefono" placeholder="(000) 000-0000" value="<?php echo $_POST['txtTelefono'] ?>"required/> </td>
-                  </tr>
-                 
                 </tbody>
               </table>
 
@@ -262,7 +252,7 @@
             <li><h3 class="lblCategoria">Categorias</h3></li>
             <li><a href="">Electronica</a></li>
             <li><a href="">Computadoras</a></li>
-            <li><a href="">Zona Gamers</a></li>
+            <li><a href="">Videojuegos</a></li>
             <li><a href="">Artic&uacute;los Gamers</a></li>
             <li><a href="">Otros</a></li>
           </ul>
