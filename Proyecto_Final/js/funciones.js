@@ -1,7 +1,7 @@
 //Variables 
 var cedula = document.getElementById('txtCedula');
 var primeraClave = document.getElementById('txtPrimeraClave');
-var SegundaClave = document.getElementById('txtSegundaClave');
+var segundaClave = document.getElementById('txtSegundaClave');
 
 function setearMascara(){
 	$("[name=txtCedula]").inputmask({"mask":"999-9999999-9"});
@@ -13,11 +13,26 @@ function setearMascara(){
 }
 
 function validar(){
-	$("[name=txtSegundaClave]").blur(function(){
-		if(primeraClave.value != SegundaClave.value){
-			alert("asdfaksdlfnañlsdfnk no son iguales D:<");
-			$(".contraseña").addClass("error");
+	$("[name=txtPrimeraClave]").blur(function(){
+		if (primeraClave.value.length >0 && primeraClave.value.length < 6) {
+			$("#error1").removeClass("magia");
+			$("#error2").addClass("error2");
+			$("[name=txtPrimeraClave]").parent().get(0).setAttribute("class","error");
+			$(".alert").remove("#mensaje");
 
+		}else{
+			$(".contraseña").removeClass("error");
+			$("[name=txtPrimeraClave]").parent().get(0).setAttribute("class","");
+
+		}
+
+	});
+
+	$("[name=txtSegundaClave]").blur(function(){
+		if(primeraClave.value != segundaClave.value){
+			$(".contraseña").addClass("error");
+			$("#error1").addClass("error1");
+			$("#error2").removeClass("magia");
 
 		}else{
 			$(".contraseña").removeClass("error");
@@ -25,5 +40,10 @@ function validar(){
 		}
 
 	});
-	
+
+	$("[name=txtPrimeraClave] , [name=txtSegundaClave]").focus(function(){
+		$("#error1").removeClass(".magia");
+		$("#error2").removeClass(".magia");
+
+	});
 }
