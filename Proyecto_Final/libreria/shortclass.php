@@ -54,3 +54,29 @@ class usuario extends genclas{
 	}
 }
 
+class admin extends genclas{
+	public $id;
+	public $usuario;
+	public $clave;
+	public $confirmar;
+
+	function __construct(){
+		parent::__construct('administrador',$id);
+		$this->usuario = mysqli_real_escape_string(asgMng::getCon(),$usuario);
+		$this->clave = mysqli_real_escape_string(asgMng::getCon(),$clave);
+		$sql = "select * from administrador where nombre = '$this->usuario' and clave=MD5('$this->clave');";
+		$rs = asgMng::query($sql) or die('Problemas men problemas everywhere');
+
+			if (mysqli_num_rows($rs) > 0) {
+				$fila = mysqli_fetch_assoc($rs);
+				$this->id = $fila['idagente'];
+				$this->usuario = $fila['nombre'];
+				$this->confirmar = true;
+
+			}else {
+					$this->confirmar = false;
+					
+			}
+
+	}
+}
