@@ -350,3 +350,56 @@ input[name="txtTitulo"]{
 	height: 92px;
 
 }
+
+.pieDePagina{
+	width:900px;
+	margin: 40px 0 0 60px;
+
+}
+
+.header{
+	margin-bottom: 20px;
+
+}
+
+#container{
+	width: auto; 
+}
+
+.navbar-inner{
+	width: auto;
+
+}
+
+#menuMantenimiento .row-fluid .span2 .barracategoria{
+	background-color: white;
+	width: 220px;
+	margin-top: 30%;
+	border-radius: 5px;
+
+}
+
+#menuMantenimiento .row-fluid .span2{
+	width: 210px;
+
+}
+
+#menuMantenimiento .row-fluid .span2 .nav h4{
+	font-size: 50px;
+	background-color: white;
+
+}
+
+#menuMantenimiento .row-fluid .span2 .barracategoria li a{
+	padding: 20px 0;
+	color: black;
+	
+}
+
+
+#pantalla{
+	margin: 0 auto;
+	width: 750px;
+	height: 540px;
+
+}

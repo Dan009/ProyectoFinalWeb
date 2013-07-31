@@ -1,6 +1,8 @@
 <?php 
 	include("libreria/engine.php");
 
+	$magia = "magia";
+
 	if ($_POST) {
 		$nombreusuario = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$administrador->nombre;
 		$clave = (isset($_POST['txtClave']))?$_POST['txtClave']:$administrador->clave;
@@ -8,17 +10,20 @@
 		
 		if ($usuario->confirmar) {
 			session_start();
-			$_SESSION['usuario']
+			$_SESSION['usuario'] = $nombreusuario;
+			header("Location:manteAdministrativo.php");
+
+		}else{
+			$magia = "";
 
 		}
-
 	}
 
  ?>
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<!--------------------
 	LOGIN FORM
 	by: Amit Jakhu
@@ -31,14 +36,23 @@
 
 	<!--STYLESHEETS-->
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 
-	</head>
-	<body>
+</head>
 
-	<h1 class="encabezado">Bienvenido al Login Secreto <img src="css/imagenes/eye-blocked.png"></h1>
+<body>
+
+	<div id="error1">
+	     <div class='alert alert-error <?php echo $magia; ?>'>
+	      <button type='button' class='close' data-dismiss='alert'>x</button>
+	      <span>La constrase&ntilde;a o el nombre de usuario es incorrecto</span>
+
+	    </div> 
+	</div> 
+
+	<h1 class="encabezadoLogin">Bienvenido al Login Secreto <img src="css/imagenes/eye-blocked.png"></h1>
 	<!--WRAPPER-->
 	<div id="wrapper">
-
 		<!--SLIDE-IN ICONS-->
 	    <div class="user-icon"></div>
 	    <div class="pass-icon"></div>
@@ -46,8 +60,7 @@
 
 	<!--LOGIN FORM-->
 
-	<form name="login-form" class="login-form" action="" method="post">
-
+    <form name="login-form" class="login-form" action="" method="post">
 		<!--HEADER-->
 	    <div class="header">
 	    <!--TITLE--><h1 style="text-align:center;">Login Administrativo</h1><!--END TITLE-->
@@ -76,27 +89,29 @@
 
 	<!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
 	<!--SCRIPTS-->
-
+	<!--Slider-in icons-->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
 
-			<!--Slider-in icons-->
-
-				<script type="text/javascript">
-				$(document).ready(function() {
-					$(".username").focus(function() {
-						$(".user-icon").css("left","-48px");
-					});
-					$(".username").blur(function() {
-						$(".user-icon").css("left","0px");
-					});
-					
-					$(".password").focus(function() {
-						$(".pass-icon").css("left","-48px");
-					});
-					$(".password").blur(function() {
-						$(".pass-icon").css("left","0px");
-					});
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".username").focus(function() {
+					$(".user-icon").css("left","-48px");
 				});
-			</script>
-	</body>
+				$(".username").blur(function() {
+					$(".user-icon").css("left","0px");
+				});
+				
+				$(".password").focus(function() {
+					$(".pass-icon").css("left","-48px");
+				});
+				$(".password").blur(function() {
+					$(".pass-icon").css("left","0px");
+				});
+			});
+		</script>
+
+</body>
+
 </html>

@@ -150,6 +150,7 @@ CONTENT
 	font-size: 22px;
 	color: #9d9e9e;
 	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+	text-align: center;
 	
 	background: #fff;
 	border: 1px solid #fff;
@@ -296,9 +297,23 @@ FOOTER
 	bottom: -1px;
 }
 
-.encabezado{
+.encabezadoLogin{
 	text-align: center;
 	font-size: 50px;
 	margin: 30px;
+	color:black;
+
+}
+
+#error1 .alert span {
+	text-align: center;
+	font-size: 30px;
+	color:black;
+	margin-left: 16%;
+
+}
+
+.magia{
+	display: none;
 
 }

@@ -110,150 +110,149 @@
     </div>
 
 <!--Login-->
-
-    <div id="iniciarsesion" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-             <h3 id="myModalLabel">Iniciar Sesi&oacute;n</h3>
-        
-          </div>
-
-          <div class="modal-body">        	
-            	<form method="POST" action="" class="form-horizontal">
-
-                <div class="control-group">
-                  <label class="control-label" for="txtUsuario">Nombre de usuario</label>
-                  <div class="controls">
-                    <input type="text" name="txtUsuario" placeholder="Usuario">
-                  </div>
-                </div>
-
-                <div class="control-group">
-                  <label class="control-label" for="txtClave">Contrase&ntilde;a</label>
-                  <div class="controls">
-                    <input type="password" name="txtClave" placeholder="Contrase&ntilde;a">
-                  </div>
-                </div>
-
-                <div class="control-group">
-                  <div class="controls">
-                    <label class="checkbox">
-                      <input type="checkbox"> Recuerdame
-                    </label>
-                      <input type="submit" class="btn btn-primary" name="btnLogin" id="btnLogin" value="Aceptar" />
-                  </div>
-                </div>
-
-              </form>
-          </div>
-
-          <div class="modal-footer">
-            <a href="#registrarse" class="registro" data-toggle="modal" data-dismiss="modal"> &iquest;Eres nuevo? Que esperas para registrarte :D </a>
-
-          </div>
-      </div>
-
-<!--Formulario para registrarse -->
-
-   <div id="registrarse" class="modal hide fade registrar" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="iniciarsesion" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-           <h3 id="myModalLabel">Registro</h3>
+           <h3 id="myModalLabel">Iniciar Sesi&oacute;n</h3>
       
         </div>
 
-        <div class="modal-body">
-          <form method="POST" action="" class="form-horizontal frmRegistrar" onsubmit="verificar()"> 
-            <table class="tblAgregar">
-              <tbody>
-                <tr>
-                  <th>Nombre</th>
-                  <td><input type="text" name="txtNombre" value="<?php echo $_POST['txtNombre'] ?>" required/> </td>
-           
-                  <th>Apellido</th>
-                  <td><input type="text" name="txtApellido" value="<?php echo $_POST['txtApellido'] ?>" required /> </td>
-                </tr>
+        <div class="modal-body">        	
+          	<form method="POST" action="" class="form-horizontal">
 
-                <tr class="contraseña">
-                  <th>Contrase&ntilde;a</th>
-                  <td><input type="password" id="txtPrimeraClave" name="txtPrimeraClave"></td>
-
-                <th>Repita su Contrase&ntilde;a, Por Favor</th>
-                  <td><input type="password" id="txtSegundaClave" name="txtSegundaClave"></td>
-                  <td ><span class="help-inline"> La contrase&ntilde;a debe tener 6 caracteres Max.</span></td>
-                </tr>
-
-                <tr id="error1" class="magia">
-                  <td colspan='4'>
-                   <div class='alert alert-error'>
-                      <button type='button' class='close' data-dismiss='alert'>x</button>
-                       <span>La constrase&ntilde;a digitada es muy corta</span>
-                    </div> 
-                  </td> 
-                </tr>
-
-                <tr id="error2" class="magia">
-                  <td colspan="4">  
-                      <div class="alert alert-error">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <span>Las constrase&ntilde;as no coinciden</span>
-                      </div> 
-                  </td> 
-                </tr>
-
-                <tr>
-                  <th>Nombre de usuario</th>
-                  <td><input type="text" name="txtUsuario"value="<?php echo $_POST['txtUsuario'] ?>" required /> </td>
-
-                  <th>Email</th>
-                  <td><input type="email" name="txtEmail" placeholder="Prueba@hotmail.com" value="<?php echo $_POST['txtEmail'] ?>"required /> </td>
-                </tr>
-
-                <tr class="<?php  echo $mostrarErrorEmail;?>">
-                  <td colspan="4">  
-                      <div class="alert alert-error">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <span>Este correo electronico esta en uso</span>
-                      </div> 
-                  </td> 
-                </tr>
-
-
-                <tr>
-                  <th>Cedula</th>
-                  <td><input type="text" id="txtCedula" name="txtCedula" id="inputError" placeholder="000-0000000-0" required/> </td>
-                 
-                  <th>Telefono</th>
-                  <td><input type="text" name="txtTelefono" placeholder="(000) 000-0000" value="<?php echo $_POST['txtTelefono'] ?>"required/> </td>
-                </tr>
-
-                <tr class="<?php  echo $mostrarErrorCedula;?>">
-                  <td colspan="4">  
-                      <div class="alert alert-error">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <span>Existe un usuario con esa Cedula</span>
-                      </div> 
-                  </td> 
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="control-group derecha">
-              <div class="controls">
-                 <label class="checkbox">
-                  <input type="checkbox" required> Acepto los T&eacute;rminos de uso
-                  
-                 </label>
-
-                <input type="submit" value="Aceptar" class="btn btn-success" id="btnRegistro" name="btnRegistro" /></td>
+              <div class="control-group">
+                <label class="control-label" for="txtUsuario">Nombre de usuario</label>
+                <div class="controls">
+                  <input type="text" name="txtUsuario" placeholder="Usuario">
+                </div>
               </div>
-            </div>
 
-          </form>
+              <div class="control-group">
+                <label class="control-label" for="txtClave">Contrase&ntilde;a</label>
+                <div class="controls">
+                  <input type="password" name="txtClave" placeholder="Contrase&ntilde;a">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                  <label class="checkbox">
+                    <input type="checkbox"> Recuerdame
+                  </label>
+                    <input type="submit" class="btn btn-primary" name="btnLogin" id="btnLogin" value="Aceptar" />
+                </div>
+              </div>
+
+            </form>
         </div>
 
-        <div class="modal-footer"></div>
+        <div class="modal-footer">
+          <a href="#registrarse" class="registro" data-toggle="modal" data-dismiss="modal"> &iquest;Eres nuevo? Que esperas para registrarte :D </a>
+
+        </div>
     </div>
+
+<!--Formulario para registrarse -->
+
+ <div id="registrarse" class="modal hide fade registrar" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+         <h3 id="myModalLabel">Registro</h3>
+    
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="" class="form-horizontal frmRegistrar" onsubmit="verificar()"> 
+          <table class="tblAgregar">
+            <tbody>
+              <tr>
+                <th>Nombre</th>
+                <td><input type="text" name="txtNombre" value="<?php echo $_POST['txtNombre'] ?>" required/> </td>
+         
+                <th>Apellido</th>
+                <td><input type="text" name="txtApellido" value="<?php echo $_POST['txtApellido'] ?>" required /> </td>
+              </tr>
+
+              <tr class="contraseña">
+                <th>Contrase&ntilde;a</th>
+                <td><input type="password" id="txtPrimeraClave" name="txtPrimeraClave"></td>
+
+              <th>Repita su Contrase&ntilde;a, Por Favor</th>
+                <td><input type="password" id="txtSegundaClave" name="txtSegundaClave"></td>
+                <td ><span class="help-inline"> La contrase&ntilde;a debe tener 6 caracteres Max.</span></td>
+              </tr>
+
+              <tr id="error1" class="magia">
+                <td colspan='4'>
+                 <div class='alert alert-error'>
+                    <button type='button' class='close' data-dismiss='alert'>x</button>
+                     <span>La constrase&ntilde;a digitada es muy corta</span>
+                  </div> 
+                </td> 
+              </tr>
+
+              <tr id="error2" class="magia">
+                <td colspan="4">  
+                    <div class="alert alert-error">
+                      <button type="button" class="close" data-dismiss="alert">x</button>
+                      <span>Las constrase&ntilde;as no coinciden</span>
+                    </div> 
+                </td> 
+              </tr>
+
+              <tr>
+                <th>Nombre de usuario</th>
+                <td><input type="text" name="txtUsuario"value="<?php echo $_POST['txtUsuario'] ?>" required /> </td>
+
+                <th>Email</th>
+                <td><input type="email" name="txtEmail" placeholder="Prueba@hotmail.com" value="<?php echo $_POST['txtEmail'] ?>"required /> </td>
+              </tr>
+
+              <tr class="<?php  echo $mostrarErrorEmail;?>">
+                <td colspan="4">  
+                    <div class="alert alert-error">
+                      <button type="button" class="close" data-dismiss="alert">x</button>
+                      <span>Este correo electronico esta en uso</span>
+                    </div> 
+                </td> 
+              </tr>
+
+
+              <tr>
+                <th>Cedula</th>
+                <td><input type="text" id="txtCedula" name="txtCedula" id="inputError" placeholder="000-0000000-0" required/> </td>
+               
+                <th>Telefono</th>
+                <td><input type="text" name="txtTelefono" placeholder="(000) 000-0000" value="<?php echo $_POST['txtTelefono'] ?>"required/> </td>
+              </tr>
+
+              <tr class="<?php  echo $mostrarErrorCedula;?>">
+                <td colspan="4">  
+                    <div class="alert alert-error">
+                      <button type="button" class="close" data-dismiss="alert">x</button>
+                      <span>Existe un usuario con esa Cedula</span>
+                    </div> 
+                </td> 
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="control-group derecha">
+            <div class="controls">
+               <label class="checkbox">
+                <input type="checkbox" required> Acepto los T&eacute;rminos de uso
+                
+               </label>
+
+              <input type="submit" value="Aceptar" class="btn btn-success" id="btnRegistro" name="btnRegistro" /></td>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer"></div>
+  </div>
 
 <!--Barra de navegación-->
 

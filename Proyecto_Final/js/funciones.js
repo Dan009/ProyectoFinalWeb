@@ -54,3 +54,9 @@ function pestanas(){
 	$('#perfil').addClass("active");
 
 }
+
+function cambiarPagina() {
+	var frame = document.getElementById("pantalla");
+	frame.setAttribute("src","mantenimientos/paciente.html");
+	
+}
