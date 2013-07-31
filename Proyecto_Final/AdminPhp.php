@@ -1,7 +1,18 @@
 <?php 
-	
+	include("libreria/engine.php");
+
+	if ($_POST) {
+		$usuario = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$administrador->nombre;
+		$clave = (isset($_POST['txtClave']))?$_POST['txtClave']:$administrador->clave;	
+		$usuario = new admin($usuario,$clave );
+		$loquehay = ($usuario->confirmar)?'Continua :P':'Hay un problema ._  .';
+		echo $loquehay;
+		exit();
+
+	}
 
  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
