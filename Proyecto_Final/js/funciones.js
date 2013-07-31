@@ -9,6 +9,7 @@ function setearMascara(){
 	$("[name=txtTelefono]").inputmask({"mask":"(999)-999-9999"});
 	$("[name=txtTelefono]").inputmask("(999)-999-9999",{showMaskOnHover: false});
 	validar();
+	pestanas();
 
 }
 
@@ -46,4 +47,10 @@ function validar(){
 		$("#error2").removeClass(".magia");
 
 	});
+}
+
+function pestanas(){
+	$('#perfil').removeClass("fade");
+	$('#perfil').addClass("active");
+
 }

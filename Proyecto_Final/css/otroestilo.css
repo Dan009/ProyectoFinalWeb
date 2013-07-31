@@ -1,7 +1,7 @@
-span{
+
+pan{
 	color:black;
 	text-shadow:none;
-
 }
 
 .buscar{
@@ -50,7 +50,7 @@ section{
 
 .barracategoria{
 	text-align: center;	
-	width: 150px;
+	width: 140px;
 
 }
 
@@ -207,26 +207,26 @@ section{
 
 }
 
-.contenedorPerfil{
-	border-radius: 10px;
-	min-height: 360px;
+.contenedor{
+	border-radius: 2px;
+	min-height: 75%;
 	margin: 52px auto;
-	width: 75%;
+	width: 76%;
+	padding-left: 10px;
 	margin-left: 200px;
 	box-shadow: 0 0 5px 2px #000;
 
 }
 
-.contenedorPerfil h2{
-	margin: 40px 0 0 20px;
+.contenedorPerfil{
+	width: 100%;
+	margin: 0 auto;
 
 }
 
 .infoUsuario{
-	width: 40%;
-	height: 350px;
-	border-right-width:2px;
-	border-right-style:dotted;
+	width: 100%;
+	height: 310px;
 
 }
 
@@ -238,7 +238,7 @@ section{
 }
 
 #frmModificar input[type="text"],input[type="email"]{
-	width: 100%;
+	width: 80%;
 	height: 35px;
 	font-size: 18px;
 
@@ -246,7 +246,8 @@ section{
 
 #frmModificar .tblAgregar{
 	font-size: 18px;
-	width: 53%;
+	width: 100%;
+	margin 0 auto;
 
 }
 
@@ -257,5 +258,52 @@ section{
 
 .espacio tr{
 	height: 50px;
+
+}
+
+.pestaña{
+	width: 100%;
+
+}
+
+.textoAnuncio{
+	font-size: 15px "Helvetica",Arial,sans-serif;
+	color:red;
+	margin-bottom: 10px;
+	display: block;
+
+}
+
+.seccionOpcion{
+	padding: 10px;
+
+}
+
+#anuncio{
+	margin-left: 10px;
+
+}
+
+#anuncio.textoAnuncio{
+	font-size: 10px;
+
+}
+
+input[name="txtTitulo"]{
+	font-size: 26px;
+	padding-top: 10px;
+	height: 40px;
+	width: 80%;
+
+}
+
+.tblFotos{
+	border: 2px solid #000;
+	width: 90%;
+
+}
+
+.fldFotos{
+	text-align: center;
 
 }
