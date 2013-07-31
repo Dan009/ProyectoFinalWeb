@@ -1,4 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php 
+	include("libreria/engine.php");
+
+	if ($_POST) {
+		$usuario = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$administrador->nombre;
+		$clave = (isset($_POST['txtClave']))?$_POST['txtClave']:$administrador->clave;	
+		$usuario = new admin($usuario,$clave );
+		$loquehay = ($usuario->confirmar)?'Continua :P':'Hay un problema ._  .';
+		echo $loquehay;
+		exit();
+
+	}
+
+ ?>
+
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -18,6 +33,7 @@ www.amitjakhu.com
 </head>
 <body>
 
+<h1 class="encabezado">Bienvenido al Login Secreto <img src="css/imagenes/eye-blocked.png"></h1>
 <!--WRAPPER-->
 <div id="wrapper">
 
@@ -27,6 +43,7 @@ www.amitjakhu.com
     <!--END SLIDE-IN ICONS-->
 
 <!--LOGIN FORM-->
+
 <form name="login-form" class="login-form" action="" method="post">
 
 	<!--HEADER-->
@@ -44,7 +61,7 @@ www.amitjakhu.com
     
     <!--FOOTER-->
     <div class="footer">
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="Aceptar" class="button" /><!--END LOGIN BUTTON-->
 
     </div>
     <!--END FOOTER-->
@@ -58,24 +75,26 @@ www.amitjakhu.com
 <!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
 <!--SCRIPTS-->
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-<!--Slider-in icons-->
-<script type="text/javascript">
-$(document).ready(function() {
-	$(".username").focus(function() {
-		$(".user-icon").css("left","-48px");
-	});
-	$(".username").blur(function() {
-		$(".user-icon").css("left","0px");
-	});
-	
-	$(".password").focus(function() {
-		$(".pass-icon").css("left","-48px");
-	});
-	$(".password").blur(function() {
-		$(".pass-icon").css("left","0px");
-	});
-});
-</script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+
+		<!--Slider-in icons-->
+
+			<script type="text/javascript">
+			$(document).ready(function() {
+				$(".username").focus(function() {
+					$(".user-icon").css("left","-48px");
+				});
+				$(".username").blur(function() {
+					$(".user-icon").css("left","0px");
+				});
+				
+				$(".password").focus(function() {
+					$(".pass-icon").css("left","-48px");
+				});
+				$(".password").blur(function() {
+					$(".pass-icon").css("left","0px");
+				});
+			});
+		</script>
 </body>
 </html>
