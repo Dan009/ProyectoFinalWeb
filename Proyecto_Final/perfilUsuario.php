@@ -67,7 +67,7 @@ session_start();
 
 <!-- Perfil del usuario -->
   <div class="contenedorPerfil span centrar tab-pane fade" id="perfil">
-    <h1>Perfil</h1>
+    <h1> Bienvenido ! de nuevo, Sr.(a) <?php echo $_SESSION['usuario']; ?></h1>
     <div class="infoUsuario">
       <h4>Foto de perfil</h4>
       <img src='libreria/img.php?src=imagenes/nophoto.jpg&w=140&h=140' class='imagenPerfil img-polaroid'>
@@ -134,11 +134,52 @@ session_start();
 
           <div class="seccionOpcion">
             <span class="textoAnuncio">Titulo que desea en el anuncio</span>
-            <input type="text" name="txtTitulo" placeholder="Escriba Su Tituto Aqui" />
+            <input type="text" name="txtTitulo" placeholder="Escriba Su Titulo Aqui" />
+          </div>
+          
+          <div class="seccionOpcion">
+            <span class="textoAnuncio">Ubicacion del anuncio</span>
+            <h5>Provincia</h5>
+            <select name="txtProvincia">
+              <option value="Azua de compostela">Azua de Compostela</option>
+              <option value="Bahoruco">Bahoruco</option>
+              <option value="Barahona">Barahona</option>
+              <option value="Dajabon">Dajabon</option>
+              <option value="Distrito Nacional">Distrito Nacional</option>
+              <option value="Duarte">Duarte</option>
+              <option value="El Seibo">El Seibo</option>
+              <option value="Elias Pina">Elias Pi&ntilde;a</option>
+              <option value="Espaillat">Espaillat</option>
+              <option value="Hato Mayor">Hato Mayor</option>
+              <option value="Hermanas Mirabal">Hermanas Mirabal</option>
+              <option value="Independencia">Independencia</option>
+              <option value="La Altagracia">La Altagracia</option>
+              <option value="La Romana">La Romana</option>
+              <option value="La Vega">La Vega</option>
+              <option value="Maria Trinidad Sanchez">Mar&iacute;a Trinidad S&aacute;nchez</option>
+              <option value="Monsenor Nouel">Monse&ntilde;or Nouel</option>
+              <option value="Monte Cristi">Monte Cristi</option>
+              <option value="Monte Plata">Monte Plata</option>
+              <option value="Pedernales">Pedernales</option>
+              <option value="Peravia">Peravia</option>
+              <option value="Puerto Plata">Puerto Plata</option>
+              <option value="Samana">Saman&aacute;</option>
+              <option value="San Cristobal">San Crist&oacute;bal</option>
+              <option value="San Jose De Ocoa">San Jos&eacute; De Ocoa</option>
+              <option value="San Juan">San Juan</option>
+              <option value="San Pedro De Macoris">San Pedro De Macor&iacute;s</option>
+              <option value="Sanchez Ramirez">S&aacute;nchez Ram&iacute;rez</option>
+              <option value="Santiago">Santiago</option>
+              <option value="Santiago Rodriguez">Santiago Rodr&iacute;guez</option>
+              <option selected="selected" value="Santo Domingo">Santo Domingo</option>
+              <option value="Valverde">Valverde</option> 
+            </select>
           </div>
 
+          
+
           <fieldset class="fldFotos">
-            <legend>Por favor solamente imagenes tipo .Jpg ,.Png y GIF</legend>
+            <legend>Por favor solamente suba imagenes tipo .JPG,.PNG y GIF</legend>
             <tr>
               <td><h4>1.</h4></td>
               <td><input type="file" /></td>
@@ -192,7 +233,7 @@ session_start();
           </div>
     </div>  
 
- <!-- Scripts -->
+<!-- Scripts -->
    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
       <script type="text/javascript" src="js/bootstrap.js"></script>
       <script type="text/javascript" src="js/funciones.js"></script>

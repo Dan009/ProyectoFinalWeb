@@ -1,4 +1,6 @@
-
+.borde{
+	border: 2px solid #000;
+}
 pan{
 	color:black;
 	text-shadow:none;
@@ -121,6 +123,7 @@ section{
 	margin: 0 auto 0 100px;
 	width: 80%;
 	text-align: center;
+
 }
 
 .error .checkbox,
@@ -311,17 +314,43 @@ input[name="txtTitulo"]{
 
 #bdMatenimiento{
 	background-color: #97cae4;
-	margin: 0px; padding: 0px;
+	margin: 0px; 
+	padding: 0px;
 	font: 12px Arial, Helvetica, sans-serif;
 	color: #3b5564;
 
 }
 
-#bdMatenimiento .container-fluid{
+#bdMatenimiento .modeUsuario{
 	height: auto;
-	margin:0 15px;
+	margin: 13px;
+	margin-bottom: auto;
 	padding: 0;
 	font-size: 18px;
+	width: 130%;
+}
+
+#bdMatenimiento .modeUsuario tr th,td{
+	text-align: center;
+
+}
+
+#bdMatenimiento .modeUsuario tr td{
+	text-align: center;
+
+}
+
+#bdMatenimiento .container-fluid{
+	height: auto;
+	margin: 13px;
+	margin-bottom: auto;
+	padding: 0;
+	font-size: 18px;
+}
+
+#bdMatenimiento .container-fluid form .tblUsuario{
+	width: 520%;
+
 }
 
 #tblCategoria{
@@ -401,5 +430,57 @@ input[name="txtTitulo"]{
 	margin: 0 auto;
 	width: 750px;
 	height: 540px;
+
+}
+
+#tblAdmins thead th {
+	text-align: center;
+
+}
+
+#tblAdmins tbody td {
+	text-align: center;
+
+}
+
+#tblAdmin{
+	width: 50%;
+	margin: 0 auto;
+
+}
+
+#tblAdmin tr th{
+	text-align: center;
+
+}
+
+
+#tblAdmin tr td h2{
+	padding: 30px;
+	width: 70%;
+	margin: 0 auto;
+
+}
+
+#tblAdmin tr th{
+	width: 20%;
+	margin: auto 50px;
+
+}
+
+#tblAdmin tr td .btn{
+	width: 50%;
+
+}
+
+.fldAdmin{
+	margin: 35px auto;
+	width: 60%;
+
+}
+
+#error1 .alert{
+	margin-left: 50%;
+	float: right;
 
 }

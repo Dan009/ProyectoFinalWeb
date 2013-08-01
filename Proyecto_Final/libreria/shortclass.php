@@ -37,8 +37,8 @@
 
 			$this->usuario = mysqli_real_escape_string(asgMng::getCon(),$usuario);
 			$this->clave = mysqli_real_escape_string(asgMng::getCon(),$clave);
-			$sql = "select * from usuario where nombreusuario = '$this->usuario' and clave=MD5('$this->clave');";
-			$rs = asgMng::query($sql) or die('Problemas men problemas everywhere');
+			$sql = "select * from usuario where nombreusuario = '$this->usuario' and clave=MD5($this->clave);";
+			$rs = asgMng::query($sql) or die('Problemas iniciando sesion');
 
 				if (mysqli_num_rows($rs) > 0) {
 					$fila = mysqli_fetch_assoc($rs);
@@ -59,12 +59,16 @@
 		public $usuario;
 		public $clave;
 		public $confirmar;
-
-		function __construct($usuario,$clave){
+	
+		function __construct(){
 			parent::__construct('administrador',$id);
+
+		}
+
+		function loguear($usuario,$clave){
 			$this->usuario = mysqli_real_escape_string(asgMng::getCon(),$usuario);
 			$this->clave = mysqli_real_escape_string(asgMng::getCon(),$clave);
-			$sql = "select * from administrador where nombre = '$this->usuario' and clave = MD5($this->clave);";
+			$sql = "select * from administrador where nombre = '$this->usuario' and claveAdmin = MD5('$this->clave');";
 			$rs = asgMng::query($sql) or die('Problemas iniciando sesion');
 
 				if (mysqli_num_rows($rs) > 0) {
@@ -79,6 +83,35 @@
 				}
 
 		}
+
+		function guardar($id= 0){
+			$sql = "INSERT INTO usuario(clave) VALUES(MD5($this->clave));";
+			asgMng::query($sql);
+			parent::guardar();
+
+		}
+
+		function eliminarAdmin(){
+			$sql = "Delete from administrador where idadmin = $this->idadmin";
+			asgMng::query($sql);
+
+		}
+
+		static function getAdmins(){
+			$admins = array();
+			$sql = "SELECT * FROM administrador GROUP BY idadmin ASC ";
+
+			$rs = asgMng::query($sql);
+
+			while($fila = mysqli_fetch_assoc($rs)) {
+				$admins[] = $fila;
+
+			}
+
+			return $admins;
+
+		}
+
 	}
 
 	class categoria extends genclas{
@@ -88,9 +121,15 @@
 
 		}
 
-		function getCategorias(){
+		function eliminarCategoria($id){
+			$sql = "Delete from categoria where idcategoria = $id";
+			asgMng::query($sql);
+
+		}
+
+		static function getCategorias(){
 			$categorias = array();
-			$sql = "select * from categoria;";
+			$sql = "SELECT * FROM categoria GROUP BY idcategoria ASC ";
 
 			$rs = asgMng::query($sql);
 
@@ -104,3 +143,4 @@
 		}
 
 	}
+

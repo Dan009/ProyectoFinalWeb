@@ -90,24 +90,24 @@
   </div>
 
 <!-- Confirmar Cerrar Sesión -->
-    <div id="confirmar" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-             <h3 id="myModalLabel">Confirmar</h3>
+  <div id="confirmar" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+           <h3 id="myModalLabel">Confirmar</h3>
 
-          </div>
+        </div>
 
-          <div class="modal-body">
-             Seguro que desea salir de aplicacion ?
+        <div class="modal-body">
+           Seguro que desea salir de aplicacion ?
 
-          </div>
+        </div>
 
-          <div class="modal-footer">
-             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-             <a class="btn btn-primary" href="index.html" target="_self">Aceptar</a>
-             
-          </div>
-    </div>
+        <div class="modal-footer">
+           <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+           <a class="btn btn-primary" href="index.html" target="_self">Aceptar</a>
+           
+        </div>
+  </div>
 
 <!--Login-->
   <div id="iniciarsesion" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -263,11 +263,12 @@
             <li><a href="">Electronica</a></li>
             <li><a href="">Computadoras</a></li>
             <li><a href="">Videojuegos</a></li>
-            <li><a href="">Artic&uacute;los Gamers</a></li>
+            <li><a href="">Artic&uacute;los de Videojuegos</a></li>
             <li><a href="">Otros</a></li>
           </ul>
   
       </div>
+<!-- Panel de Anuncios -->
 
         <?php 
             $fecha =  date('l jS \of F Y h:i:s A');
@@ -290,7 +291,6 @@
                     <aside><strong>Fecha de publicacion:</strong> $fecha | <strong>Categoria:</strong> $categoria | <strong>Fotos:</strong> $fotos </aside>
                   </article>
                 </section> <br>";
-
 
             }
 

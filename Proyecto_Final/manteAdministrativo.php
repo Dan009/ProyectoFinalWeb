@@ -3,7 +3,7 @@ session_start();
 
   $inactividad = 900;
 
-  if ($_SESSION['vida_sesion']) {
+  if ($_SESSION['tiempo_sesion']) {
     $vida_sesion = time() - $_SESSION['tiempo_sesion'];
       if ($vida_sesion > $inactividad) {
           echo "<script>alert('Tu sesion sera cerrada')</script>";
@@ -33,18 +33,22 @@ session_start();
          <div class='navbar-inner'>
             <div id="container">
               <div class="nav-collapse">
-                 <ul class="nav">
+                <ul class="nav">
                   <li class="dropdown" target="_self"> <a class="dropdown-toggle" data-toggle="dropdown">Mantenimientos <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                       <li><a href='#'><span>Moderar Usuarios</span></a></li>
-                       <li><a href='#.html'><span>Mantenimiento de Categorias</span></a></li>
-                       <li><a href='#.html'><span>Moderar Anuncios</span></a></li>
-                       <li><a href='#.html'><span>Moderar Anuncios</span></a></li>
+                       <li><a href="mantenimientos/UsuariosFrecos.php" target="pantalla">Moderar Usuario</a></li>
+                       <li><a href="mantenimientos/Categorias.php" target="pantalla">Mantenimiento de Categorias</a></li>
+                       <li><a href="mantenimientos/ModerarAnuncios.php" target="pantalla">Moderar Anuncios</a></li>
+                      <li>
+                        <a href="mantenimientos/UsuariosAdministrativos.php" target="pantalla">
+                          Mantenimiento de Administradores
+
+                        </a>
+                      </li>
                     </ul>
-
                   </li>
-                 </ul>
-
+                </ul>
+                <li><input type="button" onclick="alert('<?php echo $_SESSION['tiempo_sesion'] ?>');" value="Tiempo de vida"/></li>
                  <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
                     <li class="dropdown">
@@ -68,11 +72,11 @@ session_start();
     <div class="row-fluid">
       <div class="span2">
           <ul class="nav nav-tabs nav-stacked barracategoria">
-            <li><a href="mantenimientos/UsuariosFrecos.html" target="pantalla">Moderar Usuario</a></li>
+            <li><a href="mantenimientos/UsuariosFrecos.php" target="pantalla">Moderar Usuario</a></li>
             <li><a href="mantenimientos/Categorias.php" target="pantalla">Mantenimiento de Categorias</a></li>
-            <li><a href="mantenimientos/ModerarAnuncios.html" target="pantalla">Moderar Anuncios</a></li>
+            <li><a href="mantenimientos/ModerarAnuncios.php" target="pantalla">Moderar Anuncios</a></li>
             <li>
-              <a href="mantenimientos/UsuariosAdministrativos.html" target="pantalla">
+              <a href="mantenimientos/UsuariosAdministrativos.php" target="pantalla">
                 Mantenimiento de Administradores
 
               </a>

@@ -4,11 +4,12 @@
 	$magia = "magia";
 
 	if ($_POST) {
-		$nombreusuario = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$administrador->nombre;
-		$clave = (isset($_POST['txtClave']))?$_POST['txtClave']:$administrador->clave;
-		$usuario = new admin($nombreusuario,$clave);
+		$nombreusuario = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$admin->nombre;
+		$clave = (isset($_POST['txtClave']))?$_POST['txtClave']:$admin->clave;
+		$admin = new admin();
+		$admin->loguear($nombreusuario,$clave);
 		
-		if ($usuario->confirmar) {
+		if ($admin->confirmar) {
 			session_start();
 			$_SESSION['usuario'] = $nombreusuario;
 			header("Location:manteAdministrativo.php");

@@ -156,7 +156,6 @@ class auto_{$tabla}{
 	}
 	
 	
-	
 	function guardar($mostrarError = true)
 	{
 		$todoBien = true;

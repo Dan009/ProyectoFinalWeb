@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 31-07-2013 a las 12:31:47
+-- Tiempo de generación: 01-08-2013 a las 12:55:22
 -- Versión del servidor: 5.0.51
 -- Versión de PHP: 5.2.6
 
@@ -21,17 +21,19 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `administrador`;
 CREATE TABLE IF NOT EXISTS `administrador` (
-  `idmadmin` int(11) NOT NULL,
+  `idadmin` int(11) NOT NULL auto_increment,
   `nombre` varchar(45) default NULL,
-  `clave` varchar(15) default NULL,
-  PRIMARY KEY  (`idmadmin`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `claveAdmin` char(32) default NULL,
+  PRIMARY KEY  (`idadmin`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- Volcar la base de datos para la tabla `administrador`
 -- 
 
-INSERT INTO `administrador` VALUES (0, 'dan009', '81dc9bdb52d04dc');
+INSERT INTO `administrador` VALUES (1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `administrador` VALUES (2, 'Zoe', 'e35cf7b66449df565f93c607d5a81d09');
+INSERT INTO `administrador` VALUES (4, 'Zach', '9830fe95de944d260ed51d68d41638e0');
 
 -- --------------------------------------------------------
 
@@ -69,12 +71,17 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `nombre` varchar(45) default NULL,
   `descripcion` varchar(150) default NULL,
   PRIMARY KEY  (`idcategoria`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- 
 -- Volcar la base de datos para la tabla `categoria`
 -- 
 
+INSERT INTO `categoria` VALUES (1, 'Electronica', 'Materiales y herramientas para trabajar en electronica, al igual que materiales gastables, ect.');
+INSERT INTO `categoria` VALUES (2, 'Computadoras', 'Computadoras, laptops, IPADs, Tabletas Surface y todo lo que requiera una computadora');
+INSERT INTO `categoria` VALUES (11, 'Otros', 'Ofertas y temas varios');
+INSERT INTO `categoria` VALUES (10, 'Articulos de Videojuegos', 'Articulos, desde T- Shirts, tazas de cafe, pulseras, mochilas,ect. Todo lo referente a videojuegos ');
+INSERT INTO `categoria` VALUES (9, 'Videojuegos', 'Juegos de video, clasicos, modernos y los ultimos del momento. Tambien, para consolas de todos los tipos y accesorios.');
 
 -- --------------------------------------------------------
 

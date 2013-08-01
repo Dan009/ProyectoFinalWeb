@@ -2,6 +2,7 @@
 var cedula = document.getElementById('txtCedula');
 var primeraClave = document.getElementById('txtPrimeraClave');
 var segundaClave = document.getElementById('txtSegundaClave');
+var claveAdmin = document.getElementById('txtClave');
 
 function setearMascara(){
 	$("[name=txtCedula]").inputmask({"mask":"999-9999999-9"});
@@ -47,6 +48,22 @@ function validar(){
 		$("#error2").removeClass(".magia");
 
 	});
+
+	$("[name=txtClave]").blur(function(){
+		if (claveAdmin.value.length >0 && claveAdmin.value.length < 6) {
+			$("#error1").addClass("magia");
+			$("[name=txtClave]").parent().get(0).setAttribute("class","error");
+			$("#error1").removeClass("magia");
+			$(".alert").remove("#mensaje");
+
+		}else{
+			$(".contraseña").removeClass("error");
+			$("[name=txtClave]").parent().get(0).setAttribute("class","");
+
+		}
+
+	});
+
 }
 
 function pestanas(){
@@ -55,8 +72,8 @@ function pestanas(){
 
 }
 
-function cambiarPagina() {
-	var frame = document.getElementById("pantalla");
-	frame.setAttribute("src","mantenimientos/paciente.html");
-	
-}
+// function presentarID(id) {
+// 	window.location = window.location+'&id='+id;
+
+
+// }
