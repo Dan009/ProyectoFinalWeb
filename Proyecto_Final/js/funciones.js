@@ -11,6 +11,7 @@ function setearMascara(){
 	$("[name=txtTelefono]").inputmask("(999)-999-9999",{showMaskOnHover: false});
 	validar();
 	pestanas();
+	setearDireccion();
 
 }
 
@@ -69,6 +70,11 @@ function validar(){
 function pestanas(){
 	$('#perfil').removeClass("fade");
 	$('#perfil').addClass("active");
+
+}
+
+function setearDireccion(){
+	$("[name=txtDireccion]").val($("[name=txtProvincia]").val()+", ");
 
 }
 

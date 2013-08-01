@@ -16,6 +16,7 @@
 			$sql = "INSERT INTO usuario(clave) VALUES(MD5('$this->clave')) where idusuario = 3;";
 			asgMng::query($sql);
 			parent::guardar();
+			$this->id = mysqli_insert_id(asgMng::getCon());
 
 		}
 

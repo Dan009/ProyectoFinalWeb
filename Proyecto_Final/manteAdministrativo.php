@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-  $inactividad = 900;
+  $inactividad = 1800;
 
   if ($_SESSION['tiempo_sesion']) {
     $vida_sesion = time() - $_SESSION['tiempo_sesion'];
@@ -25,7 +25,6 @@ session_start();
 </head>
 
 <body id="bdMatenimiento">
-
 <!-- Barra de Navegación -->
   <div id="main_container">
     <div class="header">
@@ -48,8 +47,8 @@ session_start();
                     </ul>
                   </li>
                 </ul>
-                <li><input type="button" onclick="alert('<?php echo $_SESSION['tiempo_sesion'] ?>');" value="Tiempo de vida"/></li>
-                 <ul class="nav pull-right">
+
+                <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
                     <li class="dropdown">
                      <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i><?php echo strtoupper($_SESSION['usuario']); ?> <b class="caret"></b></a>

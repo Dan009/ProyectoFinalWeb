@@ -18,7 +18,7 @@
            $_SESSION['usuario'] = $usuario->usuario;
            $_SESSION['id'] = $usuario->id;
            $_SESSION['nombre'] = $usuario->nombre;
-            header("Location:perfilUsuario.php?id={$_SESSION['id']}&");
+           header("Location:perfilUsuario.php?id={$_SESSION['id']}");
 
          }else{
            alert("Lo sentimos los datos no coinciden");
@@ -51,7 +51,6 @@
              $usuario->guardar();
           
           }
-
       }        
     }
 
@@ -77,7 +76,7 @@
                   <button  type="submit" class="btn">Buscar</button>
                 </div>
               </form>
-
+              <a class="brand" href="#">Anuncios PHP</a>
                <ul class="nav pull-right">
                   <li class="divider-vertical"></li>
                   <li>

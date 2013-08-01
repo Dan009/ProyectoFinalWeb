@@ -1,6 +1,17 @@
 <?php  
 session_start();
 
+   $inactividad = 1800;
+
+  if ($_SESSION['tiempo_sesion']) {
+    $vida_sesion = time() - $_SESSION['tiempo_sesion'];
+      if ($vida_sesion > $inactividad) {
+          echo "<script>alert('Tu sesion sera cerrada')</script>";
+
+      }
+   }
+
+  $_SESSION['tiempo_sesion'] = time();
 
 ?>
 <html>
@@ -9,6 +20,7 @@ session_start();
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/otroestilo.css">
 </head>
+
 <body onLoad="setearMascara()">
 
 <!-- Barra Superior -->
@@ -60,14 +72,14 @@ session_start();
 <!-- Pestañas -->
   <div  class="contenedor tab-content">
     <ul class="nav nav-tabs pestaña" id="Pestañas">
-      <li><a href="#anuncio" data-toggle="tab">Mis Anuncios</a></li>
-      <li class="active"><a href="#perfil" data-toggle="tab">Perfil</a></li>
+      <li><a href="#anuncio" class="active" data-toggle="tab">Mis Anuncios</a></li>
+      <li><a href="#perfil" data-toggle="tab">Perfil</a></li>
      
     </ul>
 
 <!-- Perfil del usuario -->
   <div class="contenedorPerfil span centrar tab-pane fade" id="perfil">
-    <h1> Bienvenido ! de nuevo, Sr.(a) <?php echo $_SESSION['usuario']; ?></h1>
+    <h1> Bienvenido ! de nuevo, <?php echo $_SESSION['usuario']; ?></h1>
     <div class="infoUsuario">
       <h4>Foto de perfil</h4>
       <img src='libreria/img.php?src=imagenes/nophoto.jpg&w=140&h=140' class='imagenPerfil img-polaroid'>
@@ -117,7 +129,7 @@ session_start();
     </div>
 
 <!-- Panel de Anuncios -->
-    <div id="anuncio" class="tab-pane fade">
+    <div id="anuncio" class="fade">
       <h2>Publicar Anuncio</h2> 
       <form method="POST" action="" enctype="multipart/form-data">
 
@@ -136,11 +148,11 @@ session_start();
             <span class="textoAnuncio">Titulo que desea en el anuncio</span>
             <input type="text" name="txtTitulo" placeholder="Escriba Su Titulo Aqui" />
           </div>
-          
+        
           <div class="seccionOpcion">
             <span class="textoAnuncio">Ubicacion del anuncio</span>
             <h5>Provincia</h5>
-            <select name="txtProvincia">
+            <select name="txtProvincia" onchange="setearDireccion()">
               <option value="Azua de compostela">Azua de Compostela</option>
               <option value="Bahoruco">Bahoruco</option>
               <option value="Barahona">Barahona</option>
@@ -176,7 +188,13 @@ session_start();
             </select>
           </div>
 
-          
+           <div class="seccionOpcion">
+            <span class="textoAnuncio">Direccion de su anuncio</span>
+            <input type="text" name="txtDireccion" id="direccion"/>
+
+          </div>
+
+          <div id="map_canvas"></div>
 
           <fieldset class="fldFotos">
             <legend>Por favor solamente suba imagenes tipo .JPG,.PNG y GIF</legend>
@@ -240,6 +258,9 @@ session_start();
       <script type="text/javascript" src="js/bootstrap-affix.js"></script>
       <script type="text/javascript" src="js/jquery.inputmask.js"></script>
       <script type="text/javascript" src="js/tooltips.js"></script>
+          <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDP4uFegmOaMhjScvEbHXmAAuUuLHEdOw0&sensor=true"></script>
+
+    <script type="text/javascript" src="js/googleMapGeocoder.js"></script>
 
 </body>
 </html>
