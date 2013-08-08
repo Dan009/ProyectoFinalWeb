@@ -15,10 +15,8 @@
 		function guardar(){
 			parent::guardar();
 			$this->id = mysqli_insert_id(asgMng::getCon());
-			$sql = "UPDATE usuario SET clave = MD5($this->clave) where idusuario = $this->id";
+			$sql = "UPDATE usuario SET clave = MD5('$this->clave') where idusuario = $this->id";
 			asgMng::query($sql);
-			echo "A ok!";
-			exit();
 
 		}
 
@@ -89,9 +87,10 @@
 		}
 
 		function guardar($id= 0){
-			$sql = "INSERT INTO usuario(clave) VALUES(MD5($this->clave));";
-			asgMng::query($sql);
 			parent::guardar();
+			$this->id = mysqli_insert_id(asgMng::getCon());
+			$sql = "UPDATE admin SET claveAdmin = MD5('$this->clave') where idadmin = $this->id";
+			asgMng::query($sql);	
 
 		}
 

@@ -46,20 +46,17 @@ input[type="text"],input[type="password"],input[type="email"]{
 
 }
 
-section{
-	/*margin-left:350px;*/
-
-}
-
 .barracategoria{
 	text-align: center;	
 	width: 170%;
 
 }
 
-.contenido{
+.contenidoAnuncio{
+	padding: 10px 20px 40px 20px;
 	margin: 50px 300px;
-
+	box-shadow: 0 0 3px #000;
+	border-radius: 20px;
 
 }
 
@@ -76,6 +73,7 @@ section{
 
 .articulo{
 	margin: 20px 0 0 0;
+	font-size: 18px;
 
 }
 
@@ -93,10 +91,6 @@ section{
 
 }
 
-.registro{
-	float: left;
-
-}
 
 #btnRegistro.btn{
 	padding: 10px 0;
@@ -112,8 +106,12 @@ section{
 
 }
 
-.tblAgregar{
-	width: 850px;
+#registrarse{
+	margin-top: 30px;
+
+}
+#registrarse .controls{
+	margin-left: 300px;
 
 }
 
@@ -185,8 +183,19 @@ section{
 }
 
 .registrar{
+	width: 88%;
+	margin-left: -560px;
+}
+
+.tblAgregar{
 	width: 95%;
-	margin-left: -430px;
+	margin-left: 70px;
+
+}
+
+.tblAgregar tr td{
+	padding: 0 30px;
+
 }
 
 .derecha{
@@ -493,6 +502,12 @@ input[name="txtTitulo"]{
 }
 
 #error1 .alert{
+	margin-left: 50%;
+	float: right;
+
+}
+
+#error2 .alert{
 	margin-left: 50%;
 	float: right;
 

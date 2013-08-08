@@ -45,9 +45,10 @@
              $usuario->email = (isset($_POST['txtEmail']))?$_POST['txtEmail']:$usuario->email;
              $usuario->cedula = (isset($_POST['txtCedula']))?$_POST['txtCedula']:$usuario->cedula;
              $usuario->telefono = (isset($_POST['txtTelefono']))?$_POST['txtTelefono']:$usuario->telefono;
-             $usuario->clave = (isset($_POST['txtClave']))?$_POST['txtClave']:$usuario->clave;
+             $usuario->clave = (isset($_POST['txtPrimeraClave']))?$_POST['txtPrimeraClave']:$usuario->clave;
              $usuario->guardar();
              $_POST = "";
+             header("Location:index.php");
           
           }
       }        
@@ -87,7 +88,8 @@
        <div class='navbar-inner'>
           <div id="container">
             <div class="nav-collapse">
-              <a class="brand" href="index.php">Anuncios PHP</a>
+              <a class="brand" href="index.php">Anuncios PHP </a>
+
           </div>
        </div>
     </div>
@@ -96,7 +98,7 @@
 <!--Formulario para registrarse -->
  <div id="registrarse" class="modal registrar" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+         <button type="button" class="close"  aria-hidden="true">x</button>
          <h3 id="myModalLabel">Registro</h3>
     
       </div>
@@ -119,7 +121,7 @@
 
               <th>Repita su Contrase&ntilde;a, Por Favor</th>
                 <td><input type="password" id="txtSegundaClave" name="txtSegundaClave"></td>
-                <td ><span class="help-inline"> La contrase&ntilde;a debe tener 6 caracteres Max.</span></td>
+                <td class="achicar"><span > La contrase&ntilde;a debe tener 6 caracteres Max.</span></td>
               </tr>
 
               <tr id="error1" class="magia">
@@ -145,7 +147,7 @@
                 <td><input type="text" name="txtUsuario"value="<?php echo $_POST['txtUsuario'] ?>" required /> </td>
 
                 <th>Email</th>
-                <td><input type="email" name="txtEmail" placeholder="Prueba@hotmail.com" value="<?php echo $_POST['txtEmail'] ?>"required /> </td>
+                <td><input style="width:200px;"type="email" name="txtEmail" placeholder="Prueba@hotmail.com" value="<?php echo $_POST['txtEmail'] ?>" required /> </td>
               </tr>
 
               <tr class="<?php  echo $mostrarErrorEmail;?>">
