@@ -47,18 +47,19 @@ input[type="text"],input[type="password"],input[type="email"]{
 }
 
 section{
-	margin-left:250px;
+	/*margin-left:350px;*/
 
 }
 
 .barracategoria{
 	text-align: center;	
-	width: 140px;
+	width: 170%;
 
 }
 
 .contenido{
-	margin: 50px auto;
+	margin: 50px 300px;
+
 
 }
 
@@ -70,6 +71,7 @@ section{
 .imagenArticulo{
 	float: left;
 	margin: 10px;
+	transform:;
 }
 
 .articulo{
@@ -217,8 +219,8 @@ section{
 	min-height: 75%;
 	margin: 52px auto;
 	width: 76%;
-	padding-left: 10px;
-	margin-left: 200px;
+	padding: 0 20px;
+	margin-left: 245px;
 	box-shadow: 0 0 5px 2px #000;
 
 }
@@ -303,10 +305,14 @@ input[name="txtTitulo"]{
 }
 
 .tblFotos{
-	border: 2px solid #000;
-	width: 90%;
+	margin: 0 auto;
+	width: 80%;
+	box-shadow: 0px 0px 3px #000;
+	border-radius: 15px;
+	padding: 30px; 
 
 }
+
 
 .fldFotos{
 	text-align: center;
@@ -480,6 +486,12 @@ input[name="txtTitulo"]{
 
 }
 
+.fldAdmin h3{
+	margin: 35px auto;
+	width: 60%;
+
+}
+
 #error1 .alert{
 	margin-left: 50%;
 	float: right;
@@ -491,3 +503,188 @@ input[name="txtTitulo"]{
 	height:70%;
 
 }
+
+#lat,#long{
+	display: none;	
+
+}
+
+#direccion{
+	width: 40%;
+
+}
+
+#btnAnuncio{
+	padding: 10px 0;
+	font-size: 20px;
+	margin: 20px 0 0 38%;
+	width: 25%;
+
+}
+
+.tblFotos tr td{
+	text-align: center; 
+
+}
+
+
+textarea[name="txtDescripcion"]{
+	width: 910px;
+	height: 75px;
+	
+}
+
+#errorFoto{
+	width: 70%;
+	margin: 20px auto 20px 90px;
+
+
+}
+
+#errorFoto .alert span{
+	font-size: 20px;
+
+}
+
+.busquedaAvanzada{
+	border-radius: 10px;
+	box-shadow: 0 0 5px #000;
+	padding: 10px;
+	width: 60%;
+
+}
+
+.btnBuscar{
+	padding: 10px 40px;
+	font-size: 20px;
+	width: 95%;
+	margin: 10px 0 0 50px;
+
+}
+
+.tblAnuncios{
+	margin: 15px auto;
+	width: 90%;
+	border: 2px solid #000;
+
+}
+
+.tblAnuncios tr th{
+	text-align: center;
+	border: 2px solid #000;
+
+}
+
+.info{
+	color:black;
+	text-align: center;
+
+}
+
+.info td{
+	text-align: center;
+
+}
+
+.barraCategoriaPerfil{
+	text-align: center;
+	width: 200px;
+
+}
+
+#detalleAnuncio{
+	width: 75%;
+	margin-left: 300px;
+
+}
+
+.panelAnuncio{
+	padding: 0;
+	width: 45%;
+
+}
+
+#detalleAnuncio .panelAnuncio{
+	display: inline-block;
+
+}
+
+#panelFotos{
+	margin-right: 10px;
+
+
+}
+
+#panelFotos .panel-heading{
+
+}
+
+.tituloAnuncio{
+	width: 98%;
+	padding: 10px;
+}
+
+.negro{
+	color: black;
+
+}
+
+.item{
+	margin-left: 70px;
+
+}
+
+.panelAnuncio h4{
+  color: white;
+
+}
+
+.infoUsuario{
+	margin-top:30px;
+	font-size:18px;
+	height: 100px;
+}
+
+.panelInfoAnuncio{
+	margin-left: 200px;
+
+}
+
+.panel{
+	padding: 15px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius :4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.05)}
+	.panel-heading{padding:10px 15px;
+    margin:-15px -15px 15px;
+    background-color:#f5f5f5;
+    border-bottom:1px solid #ddd;
+    border-top-right-radius:3px;
+    border-top-left-radius:3px
+ }
+
+ .panel-title{margin-top:0;margin-bottom:0;font-size:17.5px;font-weight:500}
+
+ .panel-footer{
+	 padding:10px 15px;margin:15px -15px -15px;background-color:#f5f5f5;border-top:1px solid #ddd;
+	 border-bottom-right-radius:3px;border-bottom-left-radius:3px
+ }
+
+ .panel-primary{border-color:#2fa4e7}
+
+ .panel-primary .panel-heading{color:#fff;background-color:#2fa4e7;border-color:#2fa4e7}
+
+ .panel-success{border-color:#d6e9c6}
+ .panel-success .panel-heading{color:#468847;background-color:#dff0d8;border-color:#d6e9c6}.panel-warning{border-color:#fbeed5}.panel-warning .panel-heading{color:#c09853;background-color:#fcf8e3;border-color:#fbeed5}.panel-danger{border-color:#eed3d7}.panel-danger .panel-heading{color:#b94a48;background-color:#f2dede;border-color:#eed3d7}.panel-info{border-color:#bce8f1}
+
+.panel-info .panel-heading{
+	color:#3a87ad;
+	background-color:#d9edf7;
+	border-color:#bce8f1
+
+}
+
+.panel-primary .panel-title{color:#fff}.panel-success .panel-heading{color:#fff;background-color:#73a839}.panel-success .panel-title{color:#fff}.panel-warning .panel-heading{color:#fff;background-color:#dd5600}.panel-warning .panel-title{color:#fff}.panel-danger .panel-heading{color:#fff;background-color:#c71c22}.panel-danger .panel-title{color:#fff}.panel-info .panel-heading{color:#fff;background-color:#033c73}.panel-info .panel-title{color:#fff}

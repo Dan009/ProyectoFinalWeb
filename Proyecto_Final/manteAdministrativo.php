@@ -1,19 +1,8 @@
 <?php 
 session_start();
 
-  $inactividad = 1800;
 
-  if ($_SESSION['tiempo_sesion']) {
-    $vida_sesion = time() - $_SESSION['tiempo_sesion'];
-      if ($vida_sesion > $inactividad) {
-          echo "<script>alert('Tu sesion sera cerrada')</script>";
-
-      }
-   }
-
-  $_SESSION['tiempo_sesion'] = time();
-
- ?>
+?>
 <!DOCTYPE html >
 <html>
 <head>
@@ -24,7 +13,8 @@ session_start();
     
 </head>
 
-<body id="bdMatenimiento">
+<body id="bdMatenimiento" style="background-color: rgb(151, 202, 228);">
+
 <!-- Barra de Navegación -->
   <div id="main_container">
     <div class="header">
@@ -53,7 +43,7 @@ session_start();
                     <li class="dropdown">
                      <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i><?php echo strtoupper($_SESSION['usuario']); ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="index.html" target="_self"><i class="icon-off"></i> Cerrar ses&iacuteon</a></li> 
+                          <li><a href="#confirmar" target="_self"><i class="icon-off"></i> Cerrar ses&iacuteon</a></li> 
 
                         </ul>
                     </li>
@@ -105,10 +95,10 @@ session_start();
 
         <div class="modal-footer">
            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-           <a href="index.html" class="btn btn-primary">Aceptar</a>
+           <a href="libreria/logout.php" class="btn btn-primary">Aceptar</a>
 
         </div>
-    </div> 
+  </div> 
 
 <!-- Scripts -->
   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>

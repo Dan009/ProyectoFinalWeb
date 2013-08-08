@@ -1,24 +1,71 @@
 <?php  
 session_start();
+include("libreria/seguridad.php");
 
-   $inactividad = 1800;
+ $magia = "magia";
+ $categorias = categoria::getCategorias();
 
-  if ($_SESSION['tiempo_sesion']) {
-    $vida_sesion = time() - $_SESSION['tiempo_sesion'];
-      if ($vida_sesion > $inactividad) {
-          echo "<script>alert('Tu sesion sera cerrada')</script>";
+    if($_POST){
+      $anuncio = new anuncio();
+      $sobrepesado = false;
 
-      }
-   }
+     foreach ($_FILES as $foto) {
+        if($foto["size"] > 3000000) {
+           $sobrepesado = true;
 
-  $_SESSION['tiempo_sesion'] = time();
+        }
+
+     }
+
+        if (!$sobrepesado) {
+            $anuncio->titulo = (isset($_POST['txtTitulo']))?$_POST['txtTitulo']:$anuncio->titulo;
+            $anuncio->descripcion = (isset($_POST['txtDescripcion']))?$_POST['txtDescripcion']:$anuncio->descripcion;
+            $anuncio->categoria = (isset($_POST['txtCategoria']))?$_POST['txtCategoria']:$anuncio->categoria;
+            $anuncio->idusuario = $_GET['id'];
+            $anuncio->latitud = (isset($_POST['txtLatitud']))?$_POST['txtLatitud']:$anuncio->latitud;
+            $anuncio->longitud = (isset($_POST['txtLongitud']))?$_POST['txtLongitud']:$anuncio->longitud;
+          
+            $anuncio->guardar();
+
+            /*
+              @params
+                idanuncio,
+                fotos
+
+            */
+     
+            $fotos = $anuncio->agregarFotos($anuncio->idquery,$_FILES);
+            $fotos = explode(",", $fotos);
+
+            // Nombrar las fotos
+            foreach ($_FILES as $foto) {
+              for ($i=0; $i < sizeof($fotos); $i++) { 
+                move_uploaded_file($foto['tmp_name'],  "imagenes/{$fotos[$i]}.jpg");
+                  
+              }
+
+            }
+
+        }else{
+          $magia = '';
+
+        }
+         
+    }
+
+    if (isset($_GET['buscar']) && isset($_GET['query'])){
+      header("Location:index.php?buscar&query={$_GET['query']}");
+
+    }
 
 ?>
+
 <html>
 <head>
   <title>Perfil</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/otroestilo.css">
+  <META http-equiv=Content-Type content="text/html; charset=utf-8">
 </head>
 
 <body onLoad="setearMascara()">
@@ -30,12 +77,12 @@ session_start();
             <div class="nav-collapse">
               <form method="GET" action="" class="form-search" > 
                 <div class="input-append">
-                  <input type="text" class="span2 search-query" name="txtBuscar" />
-                  <button  type="submit" class="btn">Buscar</button>
+                  <input type="text" class="span2 search-query" name="query" />
+                  <button  type="submit" class="btn" name="buscar">Buscar</button>
                 </div>
               </form>
 
-              <a class="brand" href="#">Anuncios PHP</a>
+              <a class="brand" href="index.php">Anuncios PHP</a>
 
                <ul class="nav pull-right">
                   <li class="divider-vertical"></li>
@@ -43,10 +90,10 @@ session_start();
                   <li class="dropdown">
                       <a href="" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user icon-white"></i>
-                        <?php  echo $_SESSION['usuario'];?> <b class="caret"></b></a>
+                        <?php  echo unserialize($_SESSION['userLogin'])->usuario;?> <b class="caret"></b></a>
 
                         <ul class="dropdown-menu">
-                          <li><a href="#confirmar" data-toggle="modal"><i class="icon-off"></i> <span>Cerrar ses&iacuteon</span></a></li> 
+                          <li><a href="libreria/logout.php" data-toggle="modal"><i class="icon-off"></i> <span>Cerrar ses&iacuteon</span></a></li> 
 
                         </ul>
                   </li>
@@ -58,16 +105,18 @@ session_start();
 
 <!-- Barra de navegacion -->
   <div class="span3" data-spy="affix">
-        <ul class="nav nav-tabs nav-stacked barracategoria">
-          <li><h4 class="lblCategoria">Categorias</h4></li>
-          <li><a href="">Electronica</a></li>
-          <li><a href="">Computadoras</a></li>
-          <li><a href="">Videojuegos</a></li>
-          <li><a href="">Artic&uacute;los Gamers</a></li>
-          <li><a href="">Otros</a></li>
-        </ul> 
+    <ul class="nav nav-tabs nav-stacked barraCategoriaPerfil">
+      <li><h3 class="lblCategoria">Categorias</h3></li>
+      <?php 
 
-    </div>
+        foreach ($categorias as $categoria) {
+          echo "<li><a href='index.php?query={$categoria['nombre']}'>{$categoria['nombre']}</a></li>";
+
+        }
+         
+     ?>
+    </ul> 
+  </div>
 
 <!-- Pestañas -->
   <div  class="contenedor tab-content">
@@ -79,17 +128,16 @@ session_start();
 
 <!-- Perfil del usuario -->
   <div class="contenedorPerfil span centrar tab-pane fade" id="perfil">
-    <h1> Bienvenido ! de nuevo, <?php echo $_SESSION['usuario']; ?></h1>
+    <h1> Bienvenido <?php echo unserialize($_SESSION['userLogin'])->usuario; ?></h1>
     <div class="infoUsuario">
       <h4>Foto de perfil</h4>
       <img src='libreria/img.php?src=imagenes/nophoto.jpg&w=140&h=140' class='imagenPerfil img-polaroid'>
       <br />
-      <a href="#subirimagen" data-toggle="modal" class="btnSubir btn btn-info">Subir Imagen</a>
       <h5>Plan: Gratis</h5>
       <h4>Cantidad de anuncios: 0</h4>
     </div>
 
-    <!-- Formulario de modificación -->
+  <!-- Formulario de modificación -->
       <div id="frmModificar">
         <form method="POST" action="" class="form-horizontal frmRegistrar"> 
           <table class="tblAgregar">
@@ -129,46 +177,47 @@ session_start();
     </div>
 
 <!-- Panel de Anuncios -->
-    <div id="anuncio" class="fade">
-      <h2>Publicar Anuncio</h2> 
-      <form method="POST" action="" enctype="multipart/form-data">
+  <div id="anuncio" class="fade">
+    <h2>Publicar Anuncio</h2> 
+    <form method="POST" action="" enctype="multipart/form-data">
+        <div class="seccionOpcion">
+          <span class="textoAnuncio">Eliga la categoria del anuncio</span>
+          <select name="txtCategoria">
+             <?php 
+        foreach ($categorias as $categoria) {
+           echo "<option>{$categoria['nombre']}</option>";
 
-          <div class="seccionOpcion">
-            <span class="textoAnuncio">Eliga la categoria del anuncio</span>
-            <select name="txtCategoria">
-              <option>Electronica</option>
-              <option>Computadoras</option>
-              <option>Videojuegos</option>
-              <option>Artic&uacute;los Videojuegos</option>
-              <option>Otros</option>
-            </select>
-          </div>
+        }
+         
+     ?>
+          </select>
+        </div>
 
-          <div class="seccionOpcion">
-            <span class="textoAnuncio">Titulo que desea en el anuncio</span>
-            <input type="text" name="txtTitulo" placeholder="Escriba Su Titulo Aqui" />
-          </div>
-        
-          <div class="seccionOpcion">
+        <div class="seccionOpcion">
+          <span class="textoAnuncio">Titulo que desea en el anuncio</span>
+          <input type="text" name="txtTitulo" placeholder="Escriba Su Titulo Aqui" />
+        </div>
+      
+         <div class="seccionOpcion">
             <span class="textoAnuncio">Ubicacion del anuncio</span>
             <h5>Provincia</h5>
             <select name="txtProvincia" onchange="setearDireccion()">
               <option value="Azua de compostela">Azua de Compostela</option>
-              <option value="Bahoruco">Bahoruco</option>
+              <option value="Neiba">Neiba</option>
               <option value="Barahona">Barahona</option>
-              <option value="Dajabon">Dajabon</option>
+              <option value="Dajabon">Dajab&oacute;n</option>
               <option value="Distrito Nacional">Distrito Nacional</option>
-              <option value="Duarte">Duarte</option>
+              <option value="San Francisco de Macoris">San Francisco de Macor&iacute;s</option>
               <option value="El Seibo">El Seibo</option>
-              <option value="Elias Pina">Elias Pi&ntilde;a</option>
-              <option value="Espaillat">Espaillat</option>
+              <option value="Comendador">Comendador</option>
+              <option value="Moca">Moca</option>
               <option value="Hato Mayor">Hato Mayor</option>
-              <option value="Hermanas Mirabal">Hermanas Mirabal</option>
+              <option value="Salcedo">Salcedo</option>
               <option value="Independencia">Independencia</option>
-              <option value="La Altagracia">La Altagracia</option>
+              <option value="La Altagracia,Higuey">La Altagracia,Higuey</option>
               <option value="La Romana">La Romana</option>
               <option value="La Vega">La Vega</option>
-              <option value="Maria Trinidad Sanchez">Mar&iacute;a Trinidad S&aacute;nchez</option>
+              <option value="Nagua">Nagua</option>
               <option value="Monsenor Nouel">Monse&ntilde;or Nouel</option>
               <option value="Monte Cristi">Monte Cristi</option>
               <option value="Monte Plata">Monte Plata</option>
@@ -178,89 +227,134 @@ session_start();
               <option value="Samana">Saman&aacute;</option>
               <option value="San Cristobal">San Crist&oacute;bal</option>
               <option value="San Jose De Ocoa">San Jos&eacute; De Ocoa</option>
-              <option value="San Juan">San Juan</option>
+              <option value="San Juan de la Maguana ">San Juan de la Maguana </option>
               <option value="San Pedro De Macoris">San Pedro De Macor&iacute;s</option>
-              <option value="Sanchez Ramirez">S&aacute;nchez Ram&iacute;rez</option>
+              <option value="Cotui">Cotu&iacute;</option>
               <option value="Santiago">Santiago</option>
-              <option value="Santiago Rodriguez">Santiago Rodr&iacute;guez</option>
+              <option value="San Ignacio de Sabaneta">San Ignacio de Sabaneta</option>
               <option selected="selected" value="Santo Domingo">Santo Domingo</option>
               <option value="Valverde">Valverde</option> 
             </select>
           </div>
 
-           <div class="seccionOpcion">
+         <div class="seccionOpcion">
             <span class="textoAnuncio">Direccion de su anuncio</span>
-            <input type="text" name="txtDireccion" id="direccion"/>
+            <input type="text" name="txtDireccion" id="direccion" />
+            <input type="text" name="txtLatitud" id="lat" />
+            <input type="text" name="txtLongitud" id="long" />
 
           </div>
 
-          <div id="map_canvas"></div>
+        <div id="map_canvas"></div>
 
-          <fieldset class="fldFotos">
-            <legend>Por favor solamente suba imagenes tipo .JPG,.PNG y GIF</legend>
-            <tr>
-              <td><h4>1.</h4></td>
-              <td><input type="file" /></td>
-              <td><h4>2.</h4></td>
-              <td><input type="file" /></td>
-              <td><h4>3.</h4></td>
-              <td><input type="file" /></td>
-            </tr>
-          </fieldset>
-      </form>
-    </div>
+      <div class="seccionOpcion">
+        <span class="textoAnuncio">Descripc&iacute;on de su anuncio</span>
+        <textarea name="txtDescripcion" maxlength="200"></textarea>
+        <h5>Tama&ntilde;o Max. 200 letras</h5>
+
+      </div>
+
+        <fieldset class="fldFotos">
+         <legend>Por favor solamente suba imagenes tipo .JPG, .PNG y .GIF y su peso sea menor que 3 MB</legend>
+
+           <div id="errorFoto" class="<?php echo $magia; ?>">
+                <div class='alert alert-error'>
+                  <button type='button' class='close' data-dismiss='alert'>x</button>
+                  <span>Una de las imagenes subidas tiene un tama&ntilde;o mayor a 3 MB</span>
+                            
+                </div> 
+              </div>
+
+             <table class="tblFotos">
+                  <tr>
+                    <td><h4>1.</h4></td>
+                  </tr>
+
+                  <tr>
+                    <td><input type="file" name="txtFoto1" accept="image/*"/></td>
+
+                  </tr>
+
+                  <tr>
+                    <td><h4>2.</h4></td>
+                  </tr>
+
+                  <tr>
+                    <td><input type="file" name="txtFoto2" accept="image/*" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><h4>3.</h4></td>
+                  </tr>
+
+                  <tr>
+                    <td><input type="file" name="txtFoto3" accept="image/*"/></td>
+                  </tr>
+              </table>
+
+          
+        </fieldset>
+        <input style="margin: 30px 0 0 360px;" type="submit" value="Aceptar" class="btn btn-success" id="btnRegistro" name="btnRegistro"/>
+
+    </form>
+  </div>
   </div>
 
 <!-- Confirmar Cerrar Sesión-->
-   <div id="confirmar" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-             <h3 id="myModalLabel">Confirmar</h3>
+  <div id="confirmar" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+       <h3 id="myModalLabel">Confirmar</h3>
 
-          </div>
-
-          <div class="modal-body">
-             Seguro que desea salir de aplicacion ?
-
-          </div>
-
-          <div class="modal-footer">
-             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-             <a class="btn btn-primary" href="index.html" target="_self">Aceptar</a>
-             
-          </div>
     </div>
+
+    <div class="modal-body">
+       Seguro que desea salir de aplicacion ?
+
+    </div>
+
+    <div class="modal-footer">
+       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+       <a href="logout.php" class="btn btn-primary">Aceptar</a>
+       
+    </div>
+  </div>
 
 <!-- Subir Imagen -->
   <div id="subirimagen" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-             <h3 id="myModalLabel">Subir Foto</h3>
+    <form method="GET" action="" enctype="multipart/form-data">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+         <h3 id="myModalLabel">Subir Foto</h3>
 
-          </div>
+      </div>
+     
+      <div class="modal-body">
+        <div id="imagenPerfil">
+           <img src="libreria/img.php?src=imagenes/nophoto.jpg&amp;w=140&amp;h=140" class="img-polaroid" />
 
-          <div class="modal-body">
-             Seguro que desea salir de aplicacion ?
+        </div>
 
-          </div>
+        <input type="file" accept="image/*"name="txtFotoPerfil"/>
+        
+      </div>
 
-          <div class="modal-footer">
-             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-             <a class="btn btn-primary" href="_selft" target="_self">Aceptar</a>
-             
-          </div>
-    </div>  
+      <div class="modal-footer">
+         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+         <button type="submit" class="btn btn-primary">Aceptar</button>
+         
+      </div>
+    </form>
+  </div>  
 
 <!-- Scripts -->
    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-      <script type="text/javascript" src="js/bootstrap.js"></script>
-      <script type="text/javascript" src="js/funciones.js"></script>
-      <script type="text/javascript" src="js/bootstrap-affix.js"></script>
-      <script type="text/javascript" src="js/jquery.inputmask.js"></script>
-      <script type="text/javascript" src="js/tooltips.js"></script>
-          <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDP4uFegmOaMhjScvEbHXmAAuUuLHEdOw0&sensor=true"></script>
-
-    <script type="text/javascript" src="js/googleMapGeocoder.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/bootstrap-affix.js"></script>
+    <script type="text/javascript" src="js/jquery.inputmask.js"></script>
+    <script type="text/javascript" src="js/tooltips.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDP4uFegmOaMhjScvEbHXmAAuUuLHEdOw0&sensor=true"></script>
 
 </body>
 </html>

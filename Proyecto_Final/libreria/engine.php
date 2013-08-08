@@ -10,7 +10,6 @@ include("sfacil.php");
 include("mantenimiento.php");
 include("mantenimientoSimple.php");
 include("shortclass.php");
-include("seguridad.php");
 
 
 date_default_timezone_set("America/Santo_Domingo");

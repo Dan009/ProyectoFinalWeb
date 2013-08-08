@@ -75,7 +75,7 @@
     <fieldset class="fldAdmin borde">
       <form method="POST" action="">
         <table id="tblAdmin">
-          <tr><td colspan="2"> <h2 class="centrar">Agregar Un Nuevo Administrador</h2></td></tr>
+          <tr><td colspan="2"> <h2 class="centrar">Agregar Administrador</h2></td></tr>
             <tr>  
               <th>Nombre</th>
               <td><input type="text" name="txtNombre" value="<?php echo $admin->nombre; ?>" required="required" /></td>
@@ -118,9 +118,21 @@
     </div>
 
     <div class="modal-body">  
-      
-      Seguro que desea salir?;
+     <?php 
+      echo "<h3 class='centrar'>Confirme el registro que desea eliminar</h3>";
+        echo "
+          <table>
+            <thead>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Eliminar</th>
+            </thead>
+              <tbody>
+            ";
 
+         echo  "</table>";
+
+      ?>
     </div>
 
     <div class="modal-footer">

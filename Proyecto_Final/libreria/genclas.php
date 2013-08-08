@@ -1,5 +1,5 @@
 <?php
-$_SESSION["ASGtienda"] = 0;
+
 class genclas
 {
 	var $tabla;
@@ -7,7 +7,8 @@ class genclas
 	var $campos;
 	var $tienda;
 	var $tipos;
-	
+	var $idquery;
+
 	var $dbcoment;
 	var $dbname;
 	
@@ -228,7 +229,7 @@ class auto_{$tabla}{
 			{
 				echo mysqli_error(asgMng::getCon());
 			}
-			$this->$pri = mysqli_insert_id(asgMng::getCon());
+			$this->idquery = mysqli_insert_id(asgMng::getCon());
 			
 		}
 		return $todoBien;

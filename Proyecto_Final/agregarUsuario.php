@@ -1,5 +1,5 @@
 <?php  
-  session_start();
+ 
   include 'libreria/engine.php';
  
   $usuario = new usuario();
@@ -8,8 +8,6 @@
   $mostrarErrorEmail = "magia";
   $cedulaCorrecta = true;
   $emailCorrecto = true;
-  $categorias = categoria::getCategorias();
-  $anuncios = anuncio::getAnuncios();
 
     if($_POST){
       if ($_POST['btnLogin']) {
@@ -89,99 +87,14 @@
        <div class='navbar-inner'>
           <div id="container">
             <div class="nav-collapse">
-              <a class="brand" href="#">Anuncios PHP</a>
-                <ul class="nav">
-                  <li><a href="busquedaAvanzada.php">Busqueda Avanzada</a></li>
-                  <li><a href="#">Busqueda:</a></li>
-
-                  <form method="GET" action="" class="form-search">
-                    <div class="input-append">
-                      <input type="text" class="span2 search-query" name="query" />
-                    
-                      <button type="submit" class="btn">Buscar</button>
-                    </div>
-                  </form>
-                </ul>
-
-               <ul class="nav pull-right">
-                  <li class="divider-vertical"></li>
-                  <li class="dropdown">
-                   <?php 
-                    
-                      $nombreSesion = "Iniciar Sesi&oacute;n";
-
-                      if (isset($_SESSION['userLogin'])){   
-                        $nombreusuario = unserialize($_SESSION['userLogin'])->nombre;
-
-                          echo " 
-                           <a href='' class='dropdown-toggle' data-toggle='dropdown'>
-                            <i class='icon-user icon-white'></i>
-                            $nombreusuario <b class='caret'></b></a>
-
-                            <ul class='dropdown-menu'>
-                              <li><a href='libreria/logout.php' data-toggle='modal'><i class='icon-off'></i> <span>Cerrar ses&iacuteon</span></a></li> 
-
-                            </ul>";
-
-                      }else{
-                        echo "<a href='#iniciarsesion' data-toggle='modal'><i class='icon-user icon-white'></i> $nombreSesion </a>";
-
-                      }
-
-                     ?>
-                  
-                </li>
-              </ul>
+              <a class="brand" href="index.php">Anuncios PHP</a>
           </div>
        </div>
     </div>
   </div>
 
-<!--Login-->
-  <div id="iniciarsesion" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-           <h3 id="myModalLabel">Iniciar Sesi&oacute;n</h3>
-      
-        </div>
-
-        <div class="modal-body">        	
-          	<form method="POST" action="" class="form-horizontal">
-
-              <div class="control-group">
-                <label class="control-label" for="txtUsuario">Nombre de usuario</label>
-                <div class="controls">
-                  <input type="text" name="txtUsuario" placeholder="Usuario">
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="txtClave">Contrase&ntilde;a</label>
-                <div class="controls">
-                  <input type="password" name="txtClave" placeholder="Contrase&ntilde;a">
-                </div>
-              </div>
-
-              <div class="control-group">
-                <div class="controls">
-                  <label class="checkbox">
-                    <input type="checkbox"> Recuerdame
-                  </label>
-                    <input type="submit" class="btn btn-primary" name="btnLogin" id="btnLogin" value="Aceptar" />
-                </div>
-              </div>
-
-            </form>
-        </div>
-
-        <div class="modal-footer">
-          <a href="agregarUsuario.php" class="registro" data-toggle="modal" data-dismiss="modal"> &iquest;Eres nuevo? Que esperas para registrarte :D </a>
-
-        </div>
-    </div>
-
 <!--Formulario para registrarse -->
- <div id="registrarse" class="modal hide fade registrar" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div id="registrarse" class="modal registrar" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
          <h3 id="myModalLabel">Registro</h3>
@@ -280,67 +193,6 @@
 
       <div class="modal-footer"></div>
   </div>
-
-<!--Barra de navegación-->
-  <div class="span2" data-spy="affix">
-      <ul class="nav nav-tabs nav-stacked barracategoria">
-        <li><h3 class="lblCategoria">Categorias</h3></li>
-         <?php 
-            foreach ($categorias as $categoria) {
-               echo "<li><a href='index.php?query={$categoria['nombre']}'>{$categoria['nombre']}</a></li>";
-
-            }
-         
-          ?>
-      </ul>
-  </div>
-
-<!-- Panel de Anuncios -->
-  <div class="contenido">
-  <?php 
-
-      if ($anuncios) {
-         foreach ($anuncios as $anuncio) {
-          $primerafoto = explode(",", $anuncio['idfotos']);
-
-          echo "
-            <section>
-              <h1>{$anuncio['titulo']}</h1>
-              <img src='libreria/img.php?src=imagenes/$primerafoto[0].jpg&w=140&h=140' class='imagenArticulo img-polaroid'>
-              <article class='articulo'>
-                <p class='nombre'><strong>Nombre: </strong> {$anuncio['nombre']} A.K.A ({$anuncio['nombreusuario']})</p>
-                <p>
-                  {$anuncio['descripcion']}
-                </p>
-
-                <aside><strong>Fecha de publicacion:</strong> $fecha | <strong>Categoria:</strong> {$anuncio['categoria']} | <strong>Fotos:</strong> {$anuncio['fotos']} </aside>
-              </article>
-            </section> <br>";
-
-          }
-
-        }else{
-          echo "<h2>No hay resultados que mostrar</h2>";
-
-        }
-
-   ?>
- </div>
-
-<!-- Final de pagina -->
-    <!-- <footer>
-      <p>Categorias</p>
-      <ul>
-        <li><a href="index.php?cat=electronica">Electronica</a></li>
-        <li><a href="">Computadoras</a></li>
-        <li><a href="">Zona Gamers</a></li>
-        <li><a href="">Artic&uacute;los Gamers</a></li>
-        <li><a href="">Otros</a></li>
-
-      </ul>
-
-
-    </footer> -->
 
 <!-- Scripts -->
   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>

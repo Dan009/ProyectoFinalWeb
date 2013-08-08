@@ -10,6 +10,7 @@
           $categoria->cargar();
 
        }else{
+        exit();
         $categoria->idcategoria = $_GET['id'];
         $categoria->eliminarCategoria();
         $categorias = categoria::getCategorias();
@@ -58,8 +59,8 @@
                     <td>{$dato['nombre']}</td>
                     <td>{$dato['descripcion']}</td>
                     <td><a href='?accion=Modificar&id={$dato['idcategoria']}'>Modificar</a></td>
-                    <td><a href='?accion=Eliminar&id={$dato['idcategoria']}'>Eliminar</a></td>
-
+                     <td><a href='?accion=Eliminar&id={$dato['idcategoria']}' data-dismiss='modal'>Eliminar</a></td>
+                     
                   </tr>";
         
               }
@@ -100,26 +101,6 @@
       </table>
     </form>
   </div>
-
-<!-- Modal Confirmar -->
-  <div id="confirmar" class="modal hide fade" tabindex="-1" rol="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-       <h3 id="myModalLabel">Confirmar</h3>
-    </div>
-
-    <div class="modal-body">  
-      
-      Seguro que desea salir?;
-
-    </div>
-
-    <div class="modal-footer">
-       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-       <a href="index.html" class="btn btn-primary">Aceptar</a>
-
-    </div>
-  </div> 
 
 <!-- Scripts -->
   <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>

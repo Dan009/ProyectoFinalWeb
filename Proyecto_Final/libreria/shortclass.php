@@ -7,16 +7,18 @@
 		public $clave;
 		public $confirmar;
 
-		public function __construct(){
+		public function __construct($id = 0){
 			parent::__construct('usuario',$id);
 
 		}
 
-		function guardar($id= 0){
-			$sql = "INSERT INTO usuario(clave) VALUES(MD5('$this->clave')) where idusuario = 3;";
-			asgMng::query($sql);
+		function guardar(){
 			parent::guardar();
 			$this->id = mysqli_insert_id(asgMng::getCon());
+			$sql = "UPDATE usuario SET clave = MD5($this->clave) where idusuario = $this->id";
+			asgMng::query($sql);
+			echo "A ok!";
+			exit();
 
 		}
 
@@ -43,9 +45,10 @@
 
 				if (mysqli_num_rows($rs) > 0) {
 					$fila = mysqli_fetch_assoc($rs);
-					$this->id = $fila['idagente'];
-					$this->nombre = $fila['nombre'];
 					$this->confirmar = true;
+					$this->id =  $fila['idusuario'];
+					$this->nombre =  $fila['nombreusuario'];
+
 
 				}else {
 						$this->confirmar = false;
@@ -79,7 +82,7 @@
 					$this->confirmar = true;
 
 				}else {
-						$this->confirmar = false;
+				    $this->confirmar = false;
 						
 				}
 
@@ -140,6 +143,141 @@
 			}
 
 			return $categorias;
+
+		}
+
+	}
+
+	class anuncio extends genclas{
+		function __construct($id=0) {
+			parent::__construct('anuncio',$id);
+
+		}
+
+		function agregarFotos($idanuncio,$fotos){
+			$ids = "";
+
+			foreach ($fotos as $foto) {
+				if(!($foto['error'] == 4)){
+				  $sql = "INSERT INTO fotos(idanuncio,nombre,tipo) 
+				  VALUES('$idanuncio','{$foto['name']}','{$foto['type']}')";	
+				  asgMng::query($sql);
+				  $idFotoAgregada = mysqli_insert_id(asgMng::getCon()); 
+				  $ids = $ids."$idFotoAgregada,";
+	
+				}
+
+			}
+
+		  $ids = trim($ids,",");
+		  $sql = "UPDATE anuncio SET idfotos = $ids where idanuncio = $idanuncio";
+
+		  asgMng::query($sql);
+
+		  return $ids;
+			
+		}
+
+		static function getFotos($id){
+			$idFotos = array();
+
+			$sql = "SELECT idfotos FROM anuncio WHERE idanuncio = $id";
+			$rs = asgMng::query($sql);
+
+			while($fila = mysqli_fetch_assoc($rs)) {
+				$idFotos[] = $fila['idfotos'];
+
+			}
+
+			return $idFotos;
+
+		}
+
+		static function getAnuncios(){
+			$categorias = array();
+			$sql = "SELECT usua.nombre as nombre, usua.nombreusuario as nombreusuario, a.*,
+			( SELECT COUNT( * ) 
+			FROM fotos
+			WHERE ft.idanuncio = a.idanuncio
+			) AS fotos
+			FROM anuncio a, fotos ft, usuario usua
+			GROUP BY idanuncio ASC ";
+
+			$rs = asgMng::query($sql);
+
+			while($fila = mysqli_fetch_assoc($rs)) {
+				$categorias[] = $fila;
+
+			}
+
+			return $categorias;
+			
+		}
+
+	}
+
+	class buscador{
+
+		static function buscar($query){
+			$resultados = array();
+
+			$sql = "SELECT usua.nombre as nombre, usua.nombreusuario as nombreusuario, a.*,
+			( SELECT COUNT( * ) 
+			FROM fotos
+			WHERE ft.idanuncio = a.idanuncio) AS fotos
+			FROM anuncio a, fotos ft, usuario usua
+			WHERE (titulo LIKE  '%$q%' OR descripcion LIKE  '%$q%')
+			GROUP BY idanuncio ASC";
+
+			$rs = asgMng::query($sql);
+
+			while($fila = mysqli_fetch_assoc($rs)) {
+				$resultados[] = $fila;
+
+			}
+
+			return $resultados;
+			
+		}
+
+		static function busquedaAvanzada($query,$categoria){
+			$resultados = array();
+
+			$sql = "SELECT a.titulo,a.idanuncio,a.latitud,a.longitud,
+			(SELECT COUNT(*) FROM fotos
+			WHERE ft.idanuncio = a.idanuncio) AS fotos
+			FROM anuncio a, fotos ft WHERE categoria = '$categoria' AND titulo LIKE '%$query%'";
+
+			$rs = asgMng::query($sql);
+
+			while($fila = mysqli_fetch_assoc($rs)) {
+				$resultados[] = $fila;
+
+			}
+
+			return $resultados;
+
+		}
+
+		static function buscarCategoria($categoria){
+			$resultados = array();
+
+			$sql = "SELECT usua.nombre as nombre, usua.nombreusuario as nombreusuario, a.*,
+			( SELECT COUNT( * ) 
+			FROM fotos
+			WHERE ft.idanuncio = a.idanuncio) AS fotos
+			FROM anuncio a, fotos ft, usuario usua
+			WHERE categoria = '$categoria'
+			GROUP BY idanuncio ASC";
+
+			$rs = asgMng::query($sql);
+
+			while($fila = mysqli_fetch_assoc($rs)) {
+				$resultados[] = $fila;
+
+			}
+
+			return $resultados;
 
 		}
 
