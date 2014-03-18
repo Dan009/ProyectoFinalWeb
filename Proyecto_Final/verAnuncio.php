@@ -91,7 +91,7 @@
 	  		<div id="myCarousel" class="carousel slide">
 			  <ol class="carousel-indicators">
 			  	<?php  
-				  	for ($i=0; $i < 3; $i++) { 
+				  	for ($i=0; $i < sizeof($idFotos); $i++) { 
 				  		echo "<li data-target='#myCarousel' data-slide-to='$i' class='active'></li>";
 
 				  	}
@@ -101,7 +101,7 @@
 
 			  <div class="carousel-inner">
 			  	<?php  
-				  	for ($i=0; $i < 3; $i++) { 
+				  	for ($i=0; $i < sizeof($idFotos); $i++) { 
 					  echo "<div class='item'><img src='libreria/img.php?src=imagenes/{$idFotos[0]}.jpg&amp;w=200&amp;h=200' /></div>";
 			
 					}

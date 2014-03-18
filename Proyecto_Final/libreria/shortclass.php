@@ -169,7 +169,7 @@
 			}
 
 		  $ids = trim($ids,",");
-		  $sql = "UPDATE anuncio SET idfotos = $ids where idanuncio = $idanuncio";
+		  $sql = "UPDATE anuncio SET idfotos = '{$ids}' where idanuncio = $idanuncio";
 
 		  asgMng::query($sql);
 
@@ -194,11 +194,7 @@
 
 		static function getAnuncios(){
 			$categorias = array();
-			$sql = "SELECT usua.nombre as nombre, usua.nombreusuario as nombreusuario, a.*,
-			( SELECT COUNT( * ) 
-			FROM fotos
-			WHERE ft.idanuncio = a.idanuncio
-			) AS fotos
+			$sql = "SELECT usua.nombre as nombre, usua.nombreusuario as nombreusuario, a.*
 			FROM anuncio a, fotos ft, usuario usua
 			GROUP BY idanuncio ASC ";
 

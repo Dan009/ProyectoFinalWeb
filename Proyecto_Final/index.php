@@ -5,6 +5,24 @@
   $categorias = categoria::getCategorias();
   $anuncios = anuncio::getAnuncios();
 
+   if($_POST){
+      if ($_POST['btnLogin']) {
+        $usuario = new usuario();
+        $usuario->logear($_POST['txtUsuario'],$_POST['txtClave']);
+  
+         if ($usuario->confirmar) {
+
+          $_SESSION['userLogin'] = serialize($usuario);
+          header("Location:perfilUsuario.php?id={$usuario->id}");
+
+         }else{
+           echo "<script>alert('Lo sentimos los datos no coinciden')</script>";
+  
+         }
+
+      }
+    }
+
     if (isset($_GET['buscar']) && isset($_GET['query'])){
       $anuncios = buscador::buscar($_GET['q']);
 
@@ -23,25 +41,24 @@
     <link rel="stylesheet" type="text/css" href="css/otroestilo.css">
   </head>
 
-  <body onLoad="setearMascara()">
+  <body>
 
   <!-- Barra superior-->
     <div class="navbar navbar-inverse" id="overview">
          <div class='navbar-inner'>
             <div id="container">
               <div class="nav-collapse">
-                <a class="brand" href="#">Anuncios PHP</a>
+                <a class="brand" href="index.php">Anuncios PHP</a>
                   <ul class="nav">
                     <li><a href="busquedaAvanzada.php">Busqueda Avanzada</a></li>
-                    <li><a href="#">Busqueda:</a></li>
-
-                    <form method="GET" action="" class="form-search">
-                      <div class="input-append">
-                        <input type="text" class="span2 search-query" name="query" />
-                      
-                        <button type="submit" class="btn">Buscar</button>
-                      </div>
-                    </form>
+                    <li><a href="#">Busqueda</a></li>
+                      <form method="GET" action="" class="form-search">
+                        <div class="input-append">
+                          <input type="text" class="span2 search-query" name="query" />
+                        
+                          <button type="submit" class="btn">Buscar</button>
+                        </div>
+                      </form>
                   </ul>
 
                  <ul class="nav pull-right">
@@ -121,39 +138,41 @@
           </div>
       </div>
 
-  <!--Barra de navegación-->
-    <div class="span2" data-spy="affix">
-        <ul class="nav nav-tabs nav-stacked barracategoria">
-          <li><h3 class="lblCategoria">Categorias</h3></li>
-           <?php 
-              foreach ($categorias as $categoria) {
-                 echo "<li><a href='index.php?query={$categoria['nombre']}'>{$categoria['nombre']}</a></li>";
+<!--Barra de navegación-->
+  <div class="span2" data-spy="affix">
+      <ul class="nav nav-tabs nav-stacked barraCategoria">
+        <li><h3 class="lblCategoria negro">Categorias</h3></li>
+         <?php 
+            foreach ($categorias as $categoria) {
+              echo "<li><a href='index.php?query={$categoria['nombre']}' class='negro radio'>{$categoria['nombre']}</a></li>";
 
-              }
-           
-            ?>
-        </ul>
-    </div>
+            }
+         
+          ?>
+      </ul>
+  </div>
 
-  <!-- Panel de Anuncios -->
+<!-- Panel de Anuncios -->
     <div class="contenidoAnuncio">
         <?php 
-
             if ($anuncios) {
                foreach ($anuncios as $anuncio) {
+                $fotos = str_split($anuncio['idfotos'], "2");
                 $primerafoto = explode(",", $anuncio['idfotos']);
-
+                $numeroFotos = sizeof($primerafoto);
+               
                 echo "
-                  <section>
-                    <h1>{$anuncio['titulo']}</h1>
+                  <section class=''>
+                    <h1 class='negro'>{$anuncio['titulo']}</h1>
                     <img src='libreria/img.php?src=imagenes/$primerafoto[0].jpg&w=140&h=140' class='imagenArticulo img-polaroid'>
-                    <article class='articulo'>
+                    <article class='articulo negro'>
                       <p class='nombre'><strong>Nombre: </strong> {$anuncio['nombre']} ({$anuncio['nombreusuario']})</p>
                       <p>
                         <strong>Descripc&iacute;on: </strong>{$anuncio['descripcion']}
                       </p>
 
-                      <aside><strong>Fecha de publicacion:</strong> {$anuncio['fecha_publicada']} <br /> <strong>Categoria:</strong> {$anuncio['categoria']} <br /> <strong>Fotos:</strong> {$anuncio['fotos']} </aside>
+                      <aside> <br /> <strong>Categoria:</strong> {$anuncio['categoria']} <br /> <strong>Fotos:</strong> {$numeroFotos} </aside>
+
                     </article>
                   </section> <br>";
 

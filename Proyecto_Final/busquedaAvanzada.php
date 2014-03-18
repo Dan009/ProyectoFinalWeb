@@ -47,11 +47,11 @@
                            });
                                 ";
                         
-                        echo " google.maps.event.addListener($nombreMarker , 'click', function() {  window.location.href = this.url; }); }";
+                        echo " google.maps.event.addListener($nombreMarker , 'click', function() {  window.location.href = this.url; });";
                         
                     }
 
-             echo "</script>";
+             echo " } s</script>";
 
       }
 
@@ -64,44 +64,45 @@
     <title>Busqueda Avanzada</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/otroestilo.css">
+
   </head>
 <body onLoad="<?php echo $funcion; ?>">
 
 <!-- Barra superior-->
   <div class="navbar navbar-inverse" id="overview">
     <div class='navbar-inner'>
-        <div id="container">
-          <div class="nav-collapse">
-            <a class="brand" href="index.php">Anuncios PHP</a>
-             <ul class="nav pull-right">
-                <li class="divider-vertical"></li>
-                <li class="dropdown">
-                 <?php 
-                  
-                    $nombreSesion = "Iniciar Sesi&oacute;n";
-
-                    if (isset($_SESSION['userLogin'])){   
-                      $nombreusuario = unserialize($_SESSION['userLogin'])->nombre;
-
-                        echo " 
-                         <a href='' class='dropdown-toggle' data-toggle='dropdown'>
-                          <i class='icon-user icon-white'></i>
-                          $nombreusuario <b class='caret'></b></a>
-
-                          <ul class='dropdown-menu'>
-                            <li><a href='libreria/logout.php' data-toggle='modal'><i class='icon-off'></i> <span>Cerrar ses&iacuteon</span></a></li> 
-
-                          </ul>";
-
-                    }else{
-                      echo "<a href='#iniciarsesion' data-toggle='modal'><i class='icon-user icon-white'></i> $nombreSesion </a>";
-
-                    }
-                      
-                   ?>
+      <div id="container">
+        <div class="nav-collapse">
+          <a class="brand" href="index.php">Anuncios PHP</a>
+           <ul class="nav pull-right">
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+               <?php 
                 
-              </li>
-            </ul>
+                  $nombreSesion = "Iniciar Sesi&oacute;n";
+
+                  if (isset($_SESSION['userLogin'])){   
+                    $nombreusuario = unserialize($_SESSION['userLogin'])->nombre;
+
+                      echo " 
+                       <a href='' class='dropdown-toggle' data-toggle='dropdown'>
+                        <i class='icon-user icon-white'></i>
+                        $nombreusuario <b class='caret'></b></a>
+
+                        <ul class='dropdown-menu'>
+                          <li><a href='libreria/logout.php' data-toggle='modal'><i class='icon-off'></i> <span>Cerrar ses&iacuteon</span></a></li> 
+
+                        </ul>";
+
+                  }else{
+                    echo "<a href='#iniciarsesion' data-toggle='modal'><i class='icon-user icon-white'></i> $nombreSesion </a>";
+
+                  }
+                    
+                 ?>
+              
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -109,7 +110,7 @@
 
 <!--Barra de navegación-->
   <div class="span2" data-spy="affix">
-      <ul class="nav nav-tabs nav-stacked barracategoria">
+      <ul class="nav nav-tabs nav-stacked barraCategoria">
         <li><h3 class="lblCategoria">Categorias</h3></li>
          <?php 
             foreach ($categorias as $categoria) {
@@ -122,18 +123,18 @@
   </div>
 
 <!-- Panel Busqueda Avanzada-->
-  <div class="contenido busquedaAvanzada">
+  <div class="busquedaAvanzada">
     <form method="GET" action="">
-      <h3>Busqueda Avanzada</h3>
+      <h3 class="negro">Busqueda Avanzada</h3>
 
       <div class="seccionOpcion">
-        <label for="txtTexto">Texto a buscar</label>
+        <label for="txtTexto" class="negro">Texto a buscar</label>
         <input type="text" name="query" id="txtTexto" required="required" />
 
       </div>
 
       <div class="seccionOpcion">
-        <label for="txtCategoria">Categoria</label>
+        <label for="txtCategoria" class="negro">Categoria</label>
           <select name="txtCategoria" id="txtCategoria" required="required">
             <?php 
               foreach ($categorias as $categoria) {

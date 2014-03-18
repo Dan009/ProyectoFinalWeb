@@ -1,0 +1,33 @@
+Proyecto Final (el verdadero)
+
+Realizar una pagina web que permita que las personas puedan registrar anuncios, (similar a emarket.do). 
+
+En la pagina principal deben aparecer los ultimos 15 anuncios que se han puesto, y un menu para visitar las categorias (solo mostrar las que tienen anuncios.).
+
+Se podra buscar mediante un buscador. Para publicar un anuncio el usuario debe registrarse o loguearse si es el caso y los datos del anuncio son: titulo, descripcion, categoria, fotos (pueden ser 3 max), ubicacion en mapa (aqui de alguna forma va a darle al usuario la facilidad que en un mapa marque la ubicacion de lo que anuncia).
+
+Para un usuario poder registrarse necesita, nombre, apellido, email, cedula y telefono. No se pueden registrar 2 usuarios con el mismo correo electronico ni cedula. Muestre un mensaje amigable para que el usuario sepa.
+
+La pagina debe tener una interfaz administrativa, donde se puedan eliminar los anuncios malos, usuarios liosos o frecos, las categorias, y los usuarios administrativos. Para poder entrar aqui es necesario un login con permisos.
+
+Al momento de visualizar un anuncion nos mostrara todos los datos (datos del anuncio y del vendedor) y el mapa indicando la ubicacion.
+
+Realize una opcion llamada busqueda avanzada, que sera un formulario con los siguientes campos: texto, categoria (todas las categorias), vista: [mapa o lista]. Al buscar con la opcion lista, aparecera un listado con todos los anuncios que cumplen con el criterio de busqueda. De igual forma al seleccionar mapa mostrara de forma grafica (en un mapa) la ubicacion de los anuncios encontrados. Al dar un click en el mapa al anuncio nos llevara a la pagina mostrandono el detalle (es la misma pagina del anuncio).
+
+Cuando se visualizen los anuncios en modos lista, debe indicar de alguna forma cuales tiene fotos.
+
+Forma de evaluacion.
+
+5  Todo completo a tiempo, subido al virtual, presente en el aula y con los mapas. (estos se ganan completos)
+
+5 Apariencia, validacion de formularios, DCU, ortografia, colores.
+
+5 Modulo de creacion de usuario y creacion de anuncios.
+
+5 Modulo de administracion (-1 por cada mantenemiento con errores o no completos).
+
+5 Manejo de las imagenes en los anuncios.
+
+5 Buena codificacion y codigo claro.
+
+10 Demostrar que usted hizo su programa (.............. aqui en el curso.........)

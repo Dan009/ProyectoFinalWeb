@@ -24,7 +24,6 @@ include("libreria/seguridad.php");
             $anuncio->idusuario = $_GET['id'];
             $anuncio->latitud = (isset($_POST['txtLatitud']))?$_POST['txtLatitud']:$anuncio->latitud;
             $anuncio->longitud = (isset($_POST['txtLongitud']))?$_POST['txtLongitud']:$anuncio->longitud;
-          
             $anuncio->guardar();
 
             /*
